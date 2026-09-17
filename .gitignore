@@ -1,0 +1,28 @@
+# Credentials: retain safe templates only.
+.env
+.env.*
+!.env.example
+*.key
+credentials.json
+secrets.json
+
+# Python and machine-local artifacts.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+
+# Downloaded event bundle and large local transformations.
+/data/Market-cloudbed-1/
+/Market-cloudbed-1/
+/track-1-Market-cloudbed-1.zip
+/data/processed/*
+!/data/processed/.gitkeep
+# data/raw/.gitignore independently excludes raw file contents.
+
+# Experiment scratch output. Curate publishable results into eval/.
+/out/

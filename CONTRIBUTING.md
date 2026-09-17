@@ -1,141 +1,66 @@
 # Contributing
 
-Thank you for contributing to the MantisGrid AI Hackathon 2026 project.
+Working conventions for our MantisGrid AI Hackathon 2026 Track 1 team. See [README.md](README.md) for project navigation and [PROJECT_SCOPE.md](PROJECT_SCOPE.md) for the official-release requirements.
 
-This repository is used by our team for **Track 1: Root Cause Analysis (RCA)**. This document defines the working conventions we will follow so that contributions remain easy to review, merge, and trace during the hackathon.
+## 1. Fresh Work and Attribution
 
-## 1. Fresh Work Policy
+Before the event, keep preparation to documentation, research, planning, and non-functional repository setup. Judged team implementation must be created during the official competition window.
 
-To comply with the hackathon's fresh-work requirement, we distinguish clearly between pre-hackathon preparation and competition implementation.
-
-### Before the official hackathon starts
-
-Allowed preparation includes:
-
-- Documentation and research notes
-- Architecture discussions and planning
-- Repository scaffolding
-- Contribution guidelines and templates
-- Learning materials and non-functional preparation
-
-Do **not** implement competition features in advance.
-
-### During the hackathon
-
-- All judged implementation should be created during the official competition window.
-- Functional code, integrations, analysis pipelines, agents, dashboards, and evaluation logic should be implemented during the event.
-- Commit history should make it clear when implementation work was created.
+The [participant agreement](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/PARTICIPANT_AGREEMENT.md) permits licensed open-source libraries and supplied starter kits. Use the official starter rather than recreating its runner, but preserve required attribution and meaningfully improve it. Do not misrepresent organizer-provided functionality as team-built work. After the deadline, only permitted bug fixes/deployment repairs, not new features, may be added.
 
 ## 2. Branching
 
 Do not develop directly on `main` unless the team explicitly agrees that a very small documentation-only change can be committed directly.
 
-Create a branch for each task using one of the following prefixes:
+Create one focused branch per task:
 
 - `feat/<name>` — new functionality
 - `fix/<name>` — bug fixes
 - `docs/<name>` — documentation
-- `test/<name>` — tests or evaluation
-- `refactor/<name>` — code restructuring without changing intended behavior
+- `test/<name>` — tests and evaluation
+- `refactor/<name>` — restructuring without intended behavior changes
 
-Examples:
-
-```text
-feat/metrics-analysis
-feat/trace-analysis
-feat/log-analysis
-feat/agent
-feat/ui
-fix/trace-parser
-docs/readme-update
-```
-
-Keep each branch focused on one clear task whenever possible.
+Examples: `feat/trace-analysis`, `feat/model-routing`, `fix/time-conversion`, `docs/readme-update`.
 
 ## 3. Commit Messages
 
-Use short, descriptive commit messages based on a simplified Conventional Commits format.
-
-Examples:
+Use a short, descriptive type and summary:
 
 ```text
-feat: add metrics comparison tool
-fix: handle missing trace spans
-docs: update RCA workflow
-test: add incident evaluation cases
+feat: add trace evidence queries
+fix: preserve UTC+8 onset timestamps
+docs: align evaluation with official scorer
+test: compare routed and single-model configurations
 refactor: simplify agent state
 ```
 
-Guidelines:
+Keep changes small and focused. Avoid unrelated edits in one commit and save working checkpoints frequently.
 
-- Keep commits small and focused.
-- Avoid mixing unrelated changes in one commit.
-- Write messages that make the purpose of the change clear.
-- Commit working checkpoints frequently during the hackathon so changes remain easy to trace and revert.
+## 4. Pull Requests and Coordination
 
-## 4. Pull Requests
+Sync with the latest practical `main`, check the change locally, and use the PR template to explain what changed, why, and how it was verified. Keep review lightweight but meaningful; ask a teammate to review shared interfaces and core logic when practical.
 
-Before opening a pull request:
+Notify affected teammates before changing shared files. In particular, coordinate `run.py`, prediction formatting, query identifiers, timestamp normalization, model-client behavior, and evidence schema. Separate active work by module without precommitting to a framework or architecture. `docs/ARCHITECTURE.md` remains empty until the team reviews starter/data inspection and manual RCA.
 
-1. Pull or rebase against the latest `main`.
-2. Make sure the code runs locally.
-3. Keep the PR focused on one task.
-4. Briefly describe:
-   - What changed
-   - Why it changed
-   - How it was tested or verified
+## 5. Official Track 1 Integration Safeguards
 
-Prefer small pull requests that can be reviewed and merged quickly.
+These are constraints from the official [submission](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/submission.md) and [models](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/models.md) guides:
 
-During the hackathon, review should be lightweight but meaningful. A teammate should check the change when practical, especially for shared interfaces, core agent logic, data-processing code, and files that affect multiple modules.
+- Keep the CLI `python run.py --dataset ... --queries ... --out ...` compatible. Implement `solve(instruction, dataset_dir, ctx) -> Solution` and use `format_prediction()`.
+- Set our final agent as the runner default; judging does not pass `--agent`. Preserve per-case output persistence and original `row_id` values.
+- Keep one unambiguous root Dockerfile. Install dependencies at build time; the judged run has no external access except the supplied model endpoint.
+- Use only permitted GLM models for submitted LLM inference. Read `FEATHERLESS_API_KEY` and honor `FEATHERLESS_BASE_URL`; never bypass the supplied endpoint.
+- Check error bodies even when HTTP status is 200. Bound retries, fall back within the family, and keep going when one model is unavailable.
+- Respect 2 CPUs/8 GB/no GPU, 10 minutes/$3 per case, and 20 minutes/$25 for the whole 20-case run.
+- Read supplied data without modifying it. All runtime outputs and caches must be under `--out`.
+- Keep exact requested prediction keys, exact labels, and stated failure counts. Always emit a best guess, with uncertainty in the evidence.
+- Produce `Answer`, `Confidence`, `Evidence`, and `Ruled out` sections. Do not fabricate observations, references, units, or quantitative results.
 
-## 5. Repository and Upload Rules
+## 6. Upload and Data Rules
 
-The repository should contain only files that are useful for building, running, evaluating, or explaining the project.
+Commit useful source, tests, documentation, safe configuration templates, and reviewed evaluation artifacts. Do not commit keys, tokens, passwords, secret `.env` files, private credentials, raw bundles, large derived tables, temporary files, or unnecessary machine-specific settings.
 
-### Appropriate to commit
-
-- Source code
-- Tests
-- Documentation
-- Configuration templates
-- Small sanitized sample datasets
-- Evaluation scripts and results
-- Reproducible notebooks when they are part of the project workflow
-
-### Never commit
-
-- API keys
-- Access tokens
-- Passwords
-- `.env` files containing secrets
-- Private event credentials
-- Cloud credentials
-- Personal credentials
-- Large raw datasets unless explicitly allowed and necessary
-- Temporary files
-- Local IDE settings that are not required by the team
-- OS-generated files
-
-Examples of files that should not be committed:
-
-```text
-.env
-*.key
-credentials.json
-secrets.json
-.DS_Store
-```
-
-Secrets must be loaded through environment variables or another approved local configuration mechanism.
-
-If a secret is accidentally committed, notify the team immediately and rotate or revoke the exposed credential rather than only deleting the file in a later commit.
-
-## 6. Data Handling
-
-Track 1 may involve telemetry and incident data such as metrics, logs, traces, and labeled incidents.
-
-Use the following structure when appropriate:
+The local structure remains:
 
 ```text
 data/
@@ -144,74 +69,27 @@ data/
 └── samples/
 ```
 
-Guidelines:
+Raw and large processed data stay local; small samples require review and publication permission. Do not modify original data in place. During judging, write derived outputs under `--out`, not these development paths.
 
-- Keep large raw datasets local unless the event explicitly allows and requires them to be committed.
-- Treat `data/raw/` as local-only by default.
-- Commit only small, sanitized samples when they are useful for testing, documentation, or reproducibility.
-- Do not modify original raw data in place; write transformed data to `data/processed/`.
-- Document any important preprocessing steps that affect interpretation or evaluation.
-- Do not expose labels or ground-truth information to an agent if doing so would invalidate evaluation.
+Follow [DATA_POLICY.md](DATA_POLICY.md): no original OpenRCA dataset download, no answer-bearing `scoring_points` or answer artifacts in inference, and no hard-coded deployment-specific solutions. Keep required `eval/` results and `REPORT.md` available for judges without exposing them as answer sources to the agent.
 
-## 7. Team Coordination
+If a secret is committed, notify the team and rotate/revoke it; merely deleting the latest copy is insufficient.
 
-Before editing a shared core file, notify the team when there is a realistic chance that another teammate is working on the same file.
+## 7. AI-Assisted Development
 
-Prefer separate modules and clear ownership of active tasks whenever possible.
+Development assistants and submitted inference are different roles. The agreement permits AI coding tools for development; the Track 1 runtime uses the specified GLM family on Featherless.
 
-For example, implementation may eventually be separated into areas such as:
+Record the models, coding assistants, frameworks, substantial AI-generated changes, team work, and reused starter components. Review and understand generated code before merging. The final README must disclose actual usage; do not invent entries before work occurs.
 
-```text
-src/
-├── metrics/
-├── traces/
-├── logs/
-├── agent/
-└── ui/
-```
+## 8. Before Merging
 
-The exact project structure may change during the hackathon. The goal is not to enforce a rigid architecture, but to reduce merge conflicts and make ownership clear.
+- [ ] The change is focused and synchronized with the latest practical `main`.
+- [ ] Verification is described; documentation-only changes identify runtime checks as not applicable.
+- [ ] No secrets, unauthorized data, or answer leakage are introduced.
+- [ ] Relevant shared interfaces and documentation are updated and communicated.
+- [ ] Applicable CLI, formatter, row-ID, evidence, endpoint, and resource checks pass.
+- [ ] AI-assisted changes are understood; experiment numbers are measured or explicitly labeled otherwise.
 
-When interfaces between modules change, communicate the change before merging so dependent work can be updated quickly.
+## 9. Keep the Process Lightweight
 
-## 8. AI-Assisted Development
-
-AI coding assistants and models may be used during development as permitted by the event rules.
-
-Contributors should keep track of:
-
-- AI coding assistants used
-- Models used
-- Agent frameworks used
-- Major components substantially generated or modified with AI assistance
-- Major components designed and implemented directly by team members
-
-This information will be summarized in the final project README and submission materials.
-
-AI-generated code should still be reviewed, tested, and understood by the team before it is merged.
-
-## 9. Before Merging
-
-Use this checklist before merging a change into `main`:
-
-- [ ] My branch is based on the latest practical version of `main`.
-- [ ] The code runs locally or the documentation renders correctly.
-- [ ] No secrets, credentials, or private tokens are included.
-- [ ] Large raw data is not committed unnecessarily.
-- [ ] The change is limited to one clear task or purpose.
-- [ ] Relevant documentation is updated when needed.
-- [ ] Shared interfaces or core files were communicated to affected teammates.
-- [ ] AI-assisted work has been reviewed and is understood by the team.
-
-## 10. Keep the Process Lightweight
-
-This is a time-limited hackathon project. These rules are intended to reduce mistakes, merge conflicts, and compliance risks without slowing the team down.
-
-When in doubt, prefer:
-
-- Small changes
-- Clear ownership
-- Fast communication
-- Reproducible analysis
-- Evidence-backed conclusions
-- A clean and understandable commit history
+Prefer clear ownership, small reviews, reproducible evidence, and a working headless submission. An optional UI must not delay the required agent, evaluation, explanation, Docker check, or submission. Merge intended work to the default branch before the official deadline; the organizers judge what they clone, not an unmerged development branch.

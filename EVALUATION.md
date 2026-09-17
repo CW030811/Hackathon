@@ -1,331 +1,148 @@
 # Evaluation
 
-> **Pre-hackathon evaluation plan:** This document defines the evaluation principles and reporting structure based on information available before the event. Dataset-dependent scoring rules may be refined after the official Track 1 labels, incident structure, and evaluation resources are inspected. Core evaluation principles should be fixed before final testing and should not be changed simply because a result is unfavorable.
+> **Official-release alignment — September 17, 2026.** The official [scoring guide](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/scoring.md), [scorer](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/starter/score.py), [model guide](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/models.md), and [submission guide](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/submission.md) replace our pre-event Top-1 proposal as the primary scoring contract. No team benchmark results have been established by this document.
 
-## 1. Purpose
+## 1. Evaluation Goals and Authority
 
-This document defines how the Root Cause Analysis (RCA) system will be evaluated.
+Measure strict/partial correctness, evidence and explainability, evaluation quality, and dollars/time together. At minimum compare the routed agent with the **same agent on one model**. An interface is not a Track 1 scoring dimension; evidence and reproducible comparisons take priority over a dashboard.
 
-The evaluation should measure both diagnosis quality and diagnosis efficiency while remaining reproducible and resistant to label leakage.
+**Unresolved weighting discrepancy:** the starter README states evidence 35% and accuracy 20%; the scoring guide says the participant agreement governs. Section 8 of the [agreement](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/PARTICIPANT_AGREEMENT.md) instead lists Technical Execution 40%, Innovation 30%, Potential Impact 20%, and Presentation 10%, with track-specific focus. It does not explicitly map those to 35%/20%. Ask organizers for the mapping; do not invent a combined weighted score. Both Track 1 guides emphasize evidence, while the agreement remains authoritative.
 
-The main goals are to determine:
+## 2. Evaluation Unit and Datasets
 
-- Whether the system identifies the correct root cause.
-- Whether it localizes the correct component or entity.
-- Whether its conclusions are supported by real telemetry evidence.
-- How much time and model/tool usage are required per incident.
-- How often the system fails, times out, or produces invalid output.
+One evaluation unit is a **query row identified by its original `row_id`**, not necessarily one failure. Each instruction supplies a 30-minute window and a failure count; task types ask for different subsets of time, component, and reason (see [PROJECT_SCOPE.md](PROJECT_SCOPE.md)).
 
-## 2. Pre-Hackathon Evaluation Boundary
+- Public development: 70 cases from `Market-cloudbed-1`, with `scoring_points` in `dev/query_dev.csv`.
+- Official judging: the same 20 undisclosed cases for every team, from another deployment of the same shop, including unfamiliar components.
+- The organizers allow tuning on all 70 public cases. Such scores must be labeled development results and can be optimistic.
+- A local holdout is optional. If used, freeze it before tuning and group related failure windows where identifiable. Once inspected for tuning, it is no longer an unseen holdout.
+- Do not download the original OpenRCA dataset or obtain the other deployment's answers. Keep labels, answer-derived artifacts, and case-specific solutions outside inference access.
 
-Before the official event resources are released, we do not assume the exact:
+## 3. Official Prediction and Matching Rules
 
-- Label schema
-- Incident count
-- Root-cause taxonomy
-- Component granularity
-- Train/development/test split
-- Ground-truth representation
-- Official benchmark or scoring script
-
-These dataset-dependent details may be added or refined after the official resources are inspected.
-
-However, evaluation should remain consistent with the following principles:
-
-- Ground truth must remain isolated from the RCA agent during evaluation.
-- Evaluation incidents should not be used for prompt tuning or workflow tuning after evaluation begins.
-- Free-text predictions should be normalized into a reproducible scoring representation whenever possible.
-- Failures and timeouts must remain part of the denominator.
-- Evaluation rules should be frozen before final testing.
-
-## 3. Evaluation Unit
-
-The expected evaluation unit is one incident.
-
-For each evaluated incident, the evaluation record should capture, when available:
-
-- Incident identifier
-- Input context presented to the system
-- Ground-truth root cause
-- Ground-truth affected component or entity
-- Agent prediction
-- Supporting evidence returned by the system
-- Diagnosis runtime
-- Model calls
-- Tool calls
-- Token usage
-- Estimated model cost
-- Final run status
-
-If the official incident structure differs, this section should be updated after the event data is inspected.
-
-## 4. Primary Metric: Root Cause Top-1 Accuracy
-
-The primary quality metric is **Root Cause Top-1 Accuracy**.
+Use `format_prediction()` from the official runner. Each `prediction` must contain one numbered object per failure, using the requested keys in this relative order:
 
 ```text
-Root Cause Top-1 Accuracy
-=
-Number of incidents with a correct top-1 root-cause prediction
-/
-Total number of evaluated incidents
+root cause occurrence datetime
+root cause component
+root cause reason
 ```
 
-The exact definition of a correct match depends on the official ground-truth format and must be fixed before final evaluation.
+Rules that must be validated before scoring:
 
-### Structured scoring
+1. **Failure count:** exactly the number stated in the instruction. A mismatch zeros the whole case, including otherwise correct elements.
+2. **Format:** the evaluator extracts fields with a regex, not a general JSON parser. Preserve key order and do not put newlines inside values. The official formatter's surrounding formatting is supported.
+3. **Exact labels:** component and reason are exact string matches. Constrain outputs to real component candidates and the 15 official reason strings; do not add prefixes, remove pod suffixes, or substitute synonyms to make a mismatch pass.
+4. **Time:** use `YYYY-MM-DD HH:MM:SS` in UTC+8; the allowed absolute error is **<= 60 seconds**.
+5. **Requested fields:** only fields represented in that case's scoring points count. The runner recommends omitting unrequested fields; extra fields do not earn extra credit.
+6. **Multiple failures:** output chronologically to follow submission guidance. The evaluator tries every ordering, so ordering alone does not change accuracy; incorrect count does.
+7. **Row identity:** preserve original `row_id`, including non-contiguous subsets. `evidence/<row_id>.md` must use the same ID.
 
-Whenever possible, root-cause scoring should use structured fields rather than direct free-text string comparison.
+Keep the official `evaluate()` logic unchanged. Output validation and candidate canonicalization are allowed; relaxing the scorer's matching rules is not an official score.
 
-For example, an evaluation representation may separate:
+## 4. Strict and Partial Scores
+
+For each case, the evaluator finds the best matching permutation of predicted failures and counts correct requested elements across time, component, and reason. After the count gate:
 
 ```text
-root_cause_component
-root_cause_category
+case partial score = matched scoring elements / all requested scoring elements
 ```
 
-A prediction such as:
+The official function rounds this case score to two decimal places. Reuse its result rather than reimplementing slightly different rounding or matching.
 
 ```text
-The feature-service was CPU throttled.
+mean partial score = mean of the planned cases' official case scores
+strict / fully solved rate = cases with official score == 1.0 / planned cases
 ```
 
-may correspond to a structured representation such as:
+Report both, plus results by `task_1` through `task_7` and by easy/middle/hard. Optional component-, reason-, or time-specific diagnostics must be labeled supplemental, restricted to cases that request that field, and must not replace the official measures.
 
-```json
-{
-  "component": "feature-service",
-  "cause": "cpu_throttling"
-}
+**Baseline interpretation:** the official heuristic reports **mean partial score 0.073** and **2/70 fully solved** on the public deployment. The former is not a 7.3% fully-solved rate; the latter is approximately 2.9%. This is a published starter result, not a team measurement and not a result on the hidden 20 cases. Published research results on the broader 335-case benchmark are a different evaluation population and must not be directly substituted for this baseline.
+
+## 5. Completion Accounting: Do Not Lose Failed Cases
+
+Freeze a planned case-ID manifest for each experiment. Check duplicates, missing IDs, unexpected IDs, evidence coverage, and statuses separately from answer correctness.
+
+**Starter wrapper caveat:** `score.py` filters query rows to IDs present in predictions and inner-joins them. Its printed denominator therefore covers returned predictions, not necessarily every planned case. A truncated run can look better than it was.
+
+Without changing the official matching function, make the team harness retain the full planned manifest, represent missing predictions as zero-scoring failures, and report both returned-case output and completion-adjusted totals when they differ. Do not count duplicate IDs twice or silently discard exceptions, timeouts, invalid outputs, and unreached cases.
+
+Record execution status separately from correctness: a valid, completed answer can still be wrong. Always attempt a best guess for every failure, including degraded operation, while stating uncertainty in evidence. The runner's exception handler can produce an empty answer; catching the exception is crash containment, not satisfactory agent behavior.
+
+## 6. Evidence Evaluation
+
+Every case must write these sections:
+
+```markdown
+## Answer
+## Confidence
+## Evidence
+## Ruled out
 ```
 
-The actual schema must follow the official labels rather than being imposed in advance.
+Check that the evidence actually exists and supports the stated observation. Retain source file, window/timezone, component, metric or trace/log reference, units, relevant query/transformation, and numerical result when used. Do not treat an existence check alone as proof of causality.
 
-### Normalization
+Review whether the explanation distinguishes observations from the hypothesis, identifies uncertainties and alternatives, and gives a reason for excluding candidates. If missing data prevents exclusion, say that; do not manufacture a healthy comparison.
 
-If labels and predictions use different wording for the same concept, normalization rules should be defined before final scoring.
+The organizers check claims against raw files; evidence absent from the data scores zero. A wrong diagnosis can still have useful, honestly qualified evidence. A best guess is required in the prediction, but must never be presented as certainty in the explanation.
 
-Normalization must not be adjusted case-by-case after inspecting individual evaluation results.
+For our own checks, combine deterministic reference/number verification with manual review. Record how many cases/claims were checked and how they were selected. Do not let the same model's self-assessment stand alone as an evidence score.
 
-## 5. Component Localization Accuracy
+## 7. Required Controlled Comparison
 
-Component localization should be evaluated separately from root-cause classification when the labels support this distinction.
+| Configuration | Role |
+| --- | --- |
+| Unmodified heuristic | Optional free reference; does not replace the model comparison. |
+| Same agent, single model | Required control using a named permitted GLM model. |
+| Same agent, routed models | Required routed configuration; document routing, fallbacks, and stopping. |
 
-```text
-Component Localization Accuracy
-=
-Number of incidents with the correct affected/root-cause component
-/
-Total number of evaluated incidents
-```
+Use the same planned case IDs/order, telemetry access, tools, evidence requirements, scoring, and comparable budgets. Change the model-routing configuration rather than simultaneously changing unrelated tool or prompt logic and attributing all gains to routing.
 
-This separation helps distinguish cases where the system:
+Repeat configurations when practical and report repetition count and variation. If there is only one run, state that variability was not measured. Record actual models used, including fallbacks; a single-model control that fell back is not a pure single-model run. Document cold/warm cache conditions, preprocessing costs, model outages, and any other differences.
 
-- Identifies the correct component but the wrong failure mechanism.
-- Identifies the wrong component but names a plausible failure type.
-- Correctly identifies both the component and root-cause category.
+Use separate output directories per configuration and repetition. The starter appends `usage.jsonl`; reusing a directory can mix bills from different experiments. Do not compare only the successful subset from one configuration.
 
-The evaluation granularity may be service-, workload-, pod-, node-, or another level depending on the official labels.
+The official routed example supports `RCA_MODEL=<model>` to force a single-model control. This is a baseline experiment interface, not a routing policy selected for our final architecture.
 
-## 6. Evidence Support
+## 8. Dollar Cost and Runtime
 
-The RCA system should support its conclusions with real telemetry evidence rather than unsupported narrative reasoning.
+Record seconds per case, total elapsed run time, per-model calls/input/output tokens, estimated dollars per case, and completion. Report median, tail/max, and spread when the sample size supports them. Include loading, preprocessing, retry/fallback, and evidence-writing overhead in end-to-end runtime; startup outside per-case timers still consumes the total run budget.
 
-Where feasible, each RCA result should include references to the evidence used during investigation, such as:
+Cost is measured in **dollars**, not token totals across different models. For the official reviewed price table, per million tokens:
 
-- Metric names and time windows
-- Trace or span identifiers
-- Log records or log-query results
-- Entity identifiers
-- Relevant metadata or configuration records
+| Model | Input USD/M | Output USD/M |
+| --- | ---: | ---: |
+| `zai-org/GLM-4.7-Flash` | 0.065 | 0.40 |
+| `zai-org/GLM-5.3-Flash` | 0.15 | 0.50 |
+| `zai-org/GLM-4.6` | 0.55 | 2.20 |
+| `zai-org/GLM-4.7` | 0.55 | 2.20 |
+| `zai-org/GLM-5` | 0.95 | 3.15 |
+| `zai-org/GLM-5.1` | 1.30 | 4.30 |
+| `zai-org/GLM-5.2` | 1.40 | 4.40 |
 
-### Evidence Support Rate
+Use the official `cost.py` on `usage.jsonl` for development estimates and record the pricing revision. Availability and live prices can change; the official guide says judged calls are metered by organizers and priced at their published table. Do not confuse our estimates with their bill. Their key pays for judging; development credit is separate.
 
-An evidence-support measure may be reported when the available data and evaluation process support it.
+## 9. Hard Limits and Resilience Tests
 
-A supported conclusion should satisfy two conditions:
+- Per case: **10 minutes and $3**. Exceeding either zeros that case.
+- Whole run: **20 minutes and $25 for 20 cases**. Reaching either stops the run; unreached cases score zero.
+- Hardware: **2 CPUs, 8 GB RAM, no GPU**.
+- Runtime: supplied model endpoint only; read mounted inputs, write only under `--out`, no downloads or package installs.
 
-1. The referenced evidence actually exists in the underlying data.
-2. The evidence is relevant to the claim being made.
+Set internal stops below those ceilings. Twenty minutes means roughly one minute per case on average, not ten minutes each. Save usable results after each case and preserve the runner's atomic prediction-file replacement.
 
-Evidence quality should not be assessed only by the same model that produced the RCA conclusion.
+Test HTTP-200 error bodies, absent `choices`, repeated capacity failures, fallback exhaustion, empty query results, memory pressure, and stopped runs. Bound retries in time as well as count. A model outage must not erase already-completed cases; evidence should disclose degraded reasoning.
 
-Possible validation methods include:
+## 10. Reporting and Acceptance
 
-- Automated reference-validity checks
-- Deterministic checks against telemetry queries
-- Manual spot-checking
-- Human review of evidence-to-claim consistency
+The final `REPORT.md` and `eval/` should include source/code revision, configuration and model choices, case manifest, tuning/holdout status, repetitions, strict/partial results by task, time/cost/completion, evidence audit, representative failures, and limitations. Do not fill report tables with illustrative numbers that look like measured results.
 
-The exact procedure should be documented before reporting an evidence-support metric.
+Before submitting:
 
-## 7. Diagnosis Efficiency
+1. Validate the actual agent, not just the default heuristic. In the official checkout, pass `AGENT=agents.yours` to applicable Makefile targets while developing.
+2. Test the final Docker command **without `--agent`**, using the supplied key/endpoint and read-only dataset mount. Ensure our implementation is the default.
+3. Check resource limits, every original row ID, output formatting, evidence coverage, and preserved partial progress.
+4. Freeze configuration and local evaluation rules, run the comparison, and disclose any later debugging that used its results.
+5. Complete the English report and roughly four-minute working presentation, fill README AI disclosure, and merge/push before **15:00 PDT on September 17, 2026**.
 
-The system should be evaluated not only on correctness but also on the resources required to reach a diagnosis.
-
-For each incident, record when available:
-
-```text
-diagnosis_time
-model_calls
-tool_calls
-input_tokens
-output_tokens
-estimated_cost
-```
-
-Recommended aggregate statistics include:
-
-- Median diagnosis time
-- P95 diagnosis time
-- Average model calls per incident
-- Average tool calls per incident
-- Average input/output token usage
-- Estimated cost per incident
-
-Efficiency metrics should include failed and timed-out runs where applicable.
-
-## 8. Failure Handling
-
-Failures must not be silently removed from evaluation.
-
-Examples include:
-
-- Timeout
-- Exception
-- Invalid output
-- Empty answer
-- Tool failure that prevents diagnosis
-- Agent loop that reaches a defined execution limit
-
-Unless the official benchmark specifies otherwise, these cases remain part of the total number of evaluated incidents.
-
-For example:
-
-```text
-10 incidents evaluated
-6 correct
-2 incorrect
-2 timeout
-```
-
-The Root Cause Top-1 Accuracy is:
-
-```text
-6 / 10 = 60%
-```
-
-not:
-
-```text
-6 / 8 = 75%
-```
-
-A separate failure rate may also be reported.
-
-## 9. Development vs Evaluation Data
-
-If the organizers provide an official split, the project should follow it.
-
-If no split is provided, the team should define and document a split after inspecting the dataset and before final evaluation.
-
-### Development data
-
-Development incidents may be used for:
-
-- Prompt tuning
-- Tool tuning
-- Workflow design
-- Debugging
-- Error analysis
-- Agent behavior refinement
-
-### Evaluation data
-
-Evaluation incidents should be used only for final or held-out testing after the evaluation protocol is fixed.
-
-Once an incident's ground-truth answer has influenced prompt design, tool logic, rules, or manual tuning, that incident should no longer be treated as a truly unseen evaluation example.
-
-## 10. Leakage Prevention
-
-Ground-truth information must not be available to the RCA agent during evaluation.
-
-Potential leakage sources include:
-
-- Root-cause label fields
-- Answer columns
-- Incident annotations containing the solution
-- Evaluation-only metadata
-- Filenames that reveal the failure type
-- Derived features that directly encode the label
-- Tool outputs containing hidden ground truth
-- Prompt text that includes the answer
-
-Ground truth should be isolated from the agent context, tool-accessible data, and derived inputs used during evaluation.
-
-Refer to `DATA_POLICY.md` for broader data-handling rules.
-
-## 11. Reporting Format
-
-The final evaluation should include a per-incident table when practical.
-
-Example structure:
-
-| Incident | RCA Correct | Component Correct | Evidence Supported | Time | Tool Calls | Status |
-| --- | ---: | ---: | ---: | ---: | ---: | --- |
-| INC-001 | 1 | 1 | 1 | 8.2 s | 5 | success |
-| INC-002 | 0 | 1 | 1 | 11.4 s | 7 | wrong RCA |
-| INC-003 | 0 | 0 | 0 | 30.0 s | 10 | timeout |
-
-Recommended summary metrics include:
-
-- Root Cause Top-1 Accuracy
-- Component Localization Accuracy
-- Evidence Support Rate, if a valid procedure is defined
-- Median diagnosis time
-- P95 diagnosis time
-- Average tool calls
-- Average model calls
-- Average token usage
-- Estimated cost per incident
-- Failure rate
-
-No target threshold is defined before the official dataset is available.
-
-## 12. Optional Breakdowns
-
-If the number and diversity of incidents are sufficient, results may also be broken down by categories such as:
-
-- Failure type
-- Cluster
-- Service or workload category
-- Root-cause class
-- Incident complexity
-
-These breakdowns should only be reported when there are enough examples to make the comparison meaningful.
-
-## 13. Event-Day Evaluation Review
-
-After receiving the official Track 1 resources, the team should review this evaluation plan before implementing final scoring.
-
-The review should confirm:
-
-- The label schema
-- Root-cause granularity
-- Component granularity
-- The evaluation unit
-- Whether an official development/test split exists
-- Which fields are ground truth and must be isolated
-- How predictions will be normalized
-- How failures and timeouts will be represented
-- Which efficiency fields can be measured reliably
-- Whether evidence support can be evaluated reproducibly
-
-After these decisions are made, the evaluation protocol should be documented and frozen before final testing.
-
-Final evaluation results should distinguish clearly between:
-
-- Measured results
-- Estimated quantities
-- Manually reviewed results
-- Unverified claims
+The validation/experiment code, Docker integration, and measured results are still to be implemented; this document defines their requirements, not their completion.

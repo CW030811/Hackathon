@@ -4,28 +4,28 @@ Briefly describe the change.
 
 ## Why?
 
-Why is this change needed?
+Explain the requirement or issue addressed.
 
 ## How was it verified?
 
-Describe how you tested or checked the change.
+Give commands/results or documentation checks. Mark runtime checks not applicable for docs-only changes. For experiments, identify configuration, case set, output directory, and measured versus estimated results.
 
 ## Affected Areas
 
-- [ ] Metrics / telemetry
-- [ ] Traces
-- [ ] Logs
-- [ ] Agent
-- [ ] Evaluation
-- [ ] UI
-- [ ] Documentation
+- [ ] Telemetry queries / preprocessing
+- [ ] Traces / logs
+- [ ] Agent / model routing / fallback
+- [ ] Predictions / evidence
+- [ ] Evaluation / cost / runtime
+- [ ] Docker / submission interface
+- [ ] Documentation / presentation
 - [ ] Other
 
 ## Checklist
 
-- [ ] The change is focused on one task.
-- [ ] The code runs locally or the documentation renders correctly.
-- [ ] No secrets, credentials, or private tokens are included.
-- [ ] No unnecessary raw data is committed.
-- [ ] Relevant documentation has been updated when needed.
-- [ ] Shared interfaces or core files were communicated to affected teammates.
+- [ ] The change is focused and shared-interface changes were communicated.
+- [ ] No secrets, unauthorized data, or inference-time answer leakage are included.
+- [ ] Relevant documentation is updated; results are not fabricated.
+- [ ] Applicable official CLI, key order, failure count, original row ID, and evidence-format checks pass.
+- [ ] Applicable endpoint, budget, and resource constraints were checked.
+- [ ] Verification distinguishes our implementation from the untouched starter; the final default-agent behavior is preserved where relevant.
