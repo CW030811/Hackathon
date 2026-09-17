@@ -1,187 +1,107 @@
 # Project Scope
 
-> **Pre-hackathon scope:** This document reflects information publicly available before the event. Data-dependent assumptions and implementation details may be revised after the official hackathon resources are released and inspected.
+> **Official-release alignment — September 17, 2026.** Based on the [Track 1 brief](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/README.md) and its linked guides at official revision `314cca0bba49e1bb137aa9094d1dac4cdf7e4490`. Dataset facts below are documented by the organizers, not yet verified by our own inspection. Implementation choices remain open; official interface and evaluation constraints do not.
 
 ## 1. Objective
 
-Build an evidence-driven Root Cause Analysis (RCA) agent that investigates distributed-system incidents using available telemetry, including metrics, traces, and logs, and returns the most supported root-cause hypothesis with supporting evidence.
+Build an unattended, evidence-driven RCA agent that uses the supplied microservice telemetry to identify the requested failure onset time, root-cause component, and/or reason, routes calls across the permitted GLM models on Featherless, and demonstrates the accuracy, dollar-cost, and runtime trade-offs against the same agent on a single model.
 
-The system should favor evidence-backed conclusions over unsupported certainty and should explicitly communicate uncertainty when the available data is insufficient.
+Every case must receive a best-guess prediction and an explanation grounded in actual observations. A guess is not a confirmed fact: uncertainty, missing evidence, and competing explanations belong in the evidence file.
 
-## 2. Core Problem
+## 2. Three Required Deliverables
 
-In distributed systems, the component where an error appears may not be the component that originally caused the incident.
+### Agent
 
-A failure can propagate across multiple services and infrastructure layers, producing downstream latency, retries, timeouts, resource pressure, and user-facing errors. Effective RCA therefore requires correlating signals across time, system entities, and request dependencies.
+A Dockerized program that runs without human intervention on another deployment of the same system. Preserve the official command:
 
-The project focuses on distinguishing among:
-
-- **Root cause** — the underlying failure that initiated or primarily drove the incident
-- **Failure propagation** — how the failure affected dependent components
-- **Symptoms** — observable consequences such as elevated latency, errors, retries, or timeouts
-
-## 3. Primary User Scenario
-
-A user selects or provides an incident for investigation.
-
-The system should then:
-
-1. Inspect telemetry around the incident window.
-2. Identify abnormal signals and suspicious components.
-3. Generate one or more root-cause hypotheses.
-4. Collect additional evidence relevant to those hypotheses.
-5. Validate, weaken, or reject hypotheses based on the available evidence.
-6. Produce an RCA report that explains the most supported conclusion and any remaining uncertainty.
-
-Conceptually:
-
-```text
-Incident
-   ↓
-Investigation
-   ↓
-Evidence
-   ↓
-Root-Cause Hypotheses
-   ↓
-Validation
-   ↓
-RCA Report
+```bash
+python run.py --dataset /data --queries /data/query.csv --out /out
 ```
 
-## 4. In Scope
-
-### Incident Investigation
-
-- Investigating a known incident or incident time window
-- Comparing behavior before, during, and when useful after the incident
-- Narrowing the investigation from broad anomalies to specific suspicious entities
-
-### Telemetry Analysis
-
-- Metrics analysis
-- Trace analysis
-- Log analysis
-- Correlation across timestamps and system entities
-- Use of additional event-provided metadata when it is relevant to RCA
-
-### Root Cause Reasoning
-
-- Identifying suspicious components
-- Generating root-cause hypotheses
-- Comparing competing explanations
-- Validating hypotheses against available telemetry
-- Distinguishing root causes from propagated symptoms
-- Avoiding causal claims that are not supported by evidence
-
-### Evidence Handling
-
-- Linking conclusions to supporting telemetry records or derived results
-- Constructing an incident timeline when the data supports it
-- Preserving enough provenance for conclusions to be inspected or reproduced
-- Reporting uncertainty and missing evidence when necessary
+Integrate through `solve(instruction, dataset_dir, ctx) -> Solution`. Preserve the starter runner's CLI, output formatting, and per-case persistence; set our agent as its default. The judge does not pass `--agent`.
 
 ### Evaluation
 
-- Comparing RCA outputs against labeled incidents when permitted by the event data
-- Evaluating root-cause identification separately from component localization when appropriate
-- Measuring diagnosis quality together with practical factors such as latency, model usage, tool usage, and cost
-- Keeping evaluation labels isolated from the RCA agent during testing
+A reproducible harness under `eval/`, with at least a routed-versus-single-model comparison using the same agent, cases, tools, and scoring rules. Report strict and partial scores, dollars and seconds per case, run completion, and repeat-run variation. `REPORT.md` must explain the comparison, failure modes, limitations, and team changes to the starter.
 
-## 5. Out of Scope
+### Explanation
 
-The following are not primary project objectives unless official event requirements or the provided data materially change the scope.
+For every original query `row_id`, write `evidence/<row_id>.md` containing `Answer`, `Confidence`, `Evidence`, and `Ruled out`. Observations and quantitative claims must be checkable against the supplied raw telemetry. Evidence quality is evaluated even when the selected diagnosis is wrong.
 
-### Autonomous Remediation
+These requirements come from the official [submission](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/submission.md) and [scoring](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/scoring.md) guides.
 
-- Automatically restarting pods or services
-- Changing resource requests or limits
-- Scaling workloads
-- Modifying production infrastructure
-- Applying configuration changes without human review
+## 3. Case Contract
 
-### Incident Prediction
+The public `Market-cloudbed-1` bundle has 70 development query rows. Each instruction gives a 30-minute window and the number of failures. One query row is a case; it may contain multiple failures.
 
-- Predicting future incidents as a primary objective
-- Building a continuous anomaly-detection or alerting platform as the main deliverable
+| Task type | Requested fields |
+| --- | --- |
+| `task_1` | Time |
+| `task_2` | Reason |
+| `task_3` | Component |
+| `task_4` | Time and reason |
+| `task_5` | Time and component |
+| `task_6` | Component and reason |
+| `task_7` | Time, component, and reason |
 
-The project focuses on diagnosing incidents rather than independently detecting or predicting them unless the official Track 1 workflow requires otherwise.
+Only requested fields are scored. Emit exactly the stated number of failures; use the official formatter and exact component/reason vocabulary. Do not impose a generic single-incident or service-level schema. Time localization means estimating onset inside the supplied window, not detecting arbitrary future incidents.
 
-### Full Observability Platform
+Official judging uses 20 undisclosed cases from a different deployment of the same shop, including unfamiliar components. Discover component candidates from the provided telemetry rather than hard-coding the public deployment's names.
 
-- Replacing Prometheus, Grafana, Datadog, or similar monitoring systems
-- Building a complete general-purpose telemetry platform
-- Reproducing every monitoring or visualization capability available in existing observability products
+## 4. In Scope
 
-### Foundation Model Training
+- Inspect the official starter, reproduce its free heuristic baseline, and identify specific weaknesses before rebuilding functionality it already supplies.
+- Parse the task, time window, required fields, and failure count from the allowed query input.
+- Query relevant metrics, logs, and traces within the memory and time limits; correlate actual entity identifiers and dependencies.
+- Distinguish onset from an anomaly peak, and a causal component from affected components.
+- Investigate network-fault hypotheses using trace relationships; do not rely solely on metric rankings.
+- Route GLM calls by need, implement budget-aware stopping and model fallback, and record actual model usage.
+- Produce valid predictions, reproducible evidence, honest uncertainty, and alternative-hypothesis checks.
+- Compare configurations fairly and report failures rather than selecting only successful demonstrations.
+- Package an unattended root-Dockerfile submission and prepare an English working presentation of around four minutes.
 
-- Training a foundation model from scratch
-- Fine-tuning a foundation model as a core requirement
+## 5. Non-Negotiable Runtime Constraints
 
-Model training or fine-tuning may be reconsidered only if the official resources and time constraints provide a strong reason to do so.
+| Area | Official constraint |
+| --- | --- |
+| LLM inference | The seven permitted GLM `zai-org/*` models through Featherless. |
+| Credentials/endpoint | Read `FEATHERLESS_API_KEY`; honor `FEATHERLESS_BASE_URL` if set. |
+| Per case | 10 minutes and $3 maximum; exceeding either scores zero for that case. |
+| Whole run | 20 minutes and $25 for all 20 cases; reaching either stops the run, and unreached cases score zero. |
+| Hardware | 2 CPUs, 8 GB RAM, no GPU. |
+| Data and network | Use supplied inputs; write outputs/caches only under `--out`; no runtime external access except the supplied model endpoint. |
+| Model outages | Handle error bodies even on HTTP 200, retry within budget, fall back within GLM, and continue. |
 
-### Unsupported Causal Claims
+Source: official [models.md](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/models.md). Development coding assistants are distinct from the submitted inference agent; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The system should not infer causes that cannot be supported by the provided evidence.
+## 6. Out of Scope
 
-For example, telemetry may support a conclusion that CPU throttling preceded latency degradation, but without configuration or deployment evidence the system should not claim that a particular deployment changed a CPU limit.
+- Autonomous remediation, infrastructure changes, future-incident prediction, or a full monitoring platform.
+- A mandatory dashboard or interactive judging flow. Track 1 runs headlessly; an optional interface is only a presentation aid.
+- Foundation-model training as the core project, non-GLM runtime inference, runtime package/data downloads, or other external APIs.
+- Looking up answers, downloading the upstream OpenRCA dataset, baking development answers into the image, or carrying case-specific solutions into inference.
+- Fabricated evidence or presenting an unsupported hypothesis as established fact.
 
-## 6. Expected Investigation Capabilities
+## 7. Execution Priorities
 
-The RCA system should aim to answer the following questions.
+First reproduce the official baseline and inspect real files. Then perform manual RCA on selected development cases, record useful queries and decision points, and agree which starter capabilities to retain or improve. Prioritize evidence correctness, trace-aware diagnosis, output validity, controlled routing comparisons, and Docker reproducibility over optional UI work.
 
-### What changed?
+The organizer reports the heuristic at **0.073 mean partial score and 2/70 fully solved cases**. It ranks metric anomalies, does not read logs/traces, and estimates time from a peak. These are starting observations to test, not a promise that a particular redesign will improve results.
 
-Identify abnormal telemetry or notable changes around the incident window.
+## 8. Open Decisions and Review Window
 
-### Where did it happen?
+`docs/ARCHITECTURE.md` remains completely empty. No database, framework, fixed tool count, or agent workflow is selected by this update.
 
-Identify suspicious services, workloads, pods, nodes, dependencies, or other entities when those entities are represented in the provided data.
+After actual starter/data inspection and manual RCA, the team should review:
 
-### How did the failure propagate?
+- Real `row_id` availability, timestamp parsing, candidate identifiers, and source-file coverage.
+- Data access and cache strategy under the judged hardware and write restrictions.
+- Tool interfaces and evidence representation demonstrated by manual investigation.
+- Routing policy, fallback order, stopping budgets, and a comparable single-model control.
+- Local experiment grouping and whether a genuine held-out development subset can be maintained.
 
-Use timestamps, traces, dependencies, and other available evidence to explain how the incident affected downstream or upstream components.
+Give those verified findings to the development AI, review its proposed architecture, then fill the architecture document. Update README, this scope, data policy, and evaluation together when facts change. Do not relax official constraints or scoring rules to fit an unfavorable result.
 
-### Why is this the most likely root cause?
+## 9. Definition of Done
 
-Provide evidence that supports the leading hypothesis and, where useful, evidence that weakens competing hypotheses.
-
-### What remains uncertain?
-
-Identify missing evidence, unresolved ambiguity, and reasonable alternative explanations when the data does not support a definitive conclusion.
-
-## 7. Definition of a Successful RCA
-
-A successful RCA should provide, when supported by the available data:
-
-1. A clearly identified suspected root cause.
-2. The affected component or entity at an appropriate level of granularity.
-3. Supporting evidence from available telemetry or metadata.
-4. A coherent incident timeline or causal sequence.
-5. A distinction between the likely root cause and downstream symptoms.
-6. Explicit uncertainty when evidence is incomplete or conflicting.
-
-A successful result should be inspectable and evidence-backed rather than only a free-form model explanation.
-
-## 8. Data-Dependent Assumptions
-
-Track 1 is expected to provide real telemetry including metrics, traces, and logs, together with labeled incidents.
-
-Exact schemas, file formats, identifiers, dataset sizes, timestamp conventions, available metadata, data-access mechanisms, and relationships between data sources are **not assumed in advance**.
-
-Additional resources may include system metadata, workload information, configuration data, dependency information, event records, or other telemetry-related inputs. If such resources are provided, they may be incorporated into the RCA workflow when they improve evidence quality or diagnosis accuracy.
-
-After the official event resources are released, the team should review and update this section based on the actual data before committing to implementation details.
-
-## 9. Scope Priorities
-
-When time is limited, development should prioritize:
-
-1. Correctly reading and understanding the provided data.
-2. Completing one end-to-end RCA workflow.
-3. Producing conclusions that are directly supported by evidence.
-4. Evaluating the workflow across multiple incidents rather than demonstrating only one successful case.
-5. Improving usability and presentation after the core workflow is reliable.
-6. Adding optional features only after the primary RCA workflow works end to end.
-
-The project should prefer a smaller, testable, evidence-backed system over a broader system with incomplete diagnosis logic.
+The intended submission builds from a public default-branch checkout, runs the official Docker command without interaction or `--agent`, completes the assigned cases within resource limits, writes valid predictions and evidence keyed by original row IDs, and includes a reproducible model comparison in `REPORT.md` and `eval/`. The README must document actual setup and AI usage. None of these completion claims is implied merely by having these planning documents.
