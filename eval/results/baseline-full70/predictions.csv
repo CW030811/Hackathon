@@ -1,0 +1,637 @@
+row_id,prediction,task_index,wall_s,prompt_tokens,completion_tokens,calls
+0,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice2-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,24.44,7767,301,2
+1,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 09:32:30""
+    }
+}
+```",task_1,20.41,6815,322,2
+2,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 10:00:00""
+    }
+}
+```",task_1,29.5,7903,316,2
+3,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice-1"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_6,22.7,6593,268,2
+4,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice-1""
+    }
+}
+```",task_3,24.93,7333,282,2
+5,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_2,23.75,7899,263,2
+6,"```json
+{
+    ""1"": {
+        ""root cause component"": ""recommendationservice-0"",
+        ""root cause reason"": ""container CPU load""
+    },
+    ""2"": {
+        ""root cause component"": ""recommendationservice-2"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,26.23,8201,378,2
+7,"```json
+{
+    ""1"": {
+        ""root cause component"": ""recommendationservice-0"",
+        ""root cause reason"": ""container CPU load""
+    },
+    ""2"": {
+        ""root cause component"": ""recommendationservice-2"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,24.92,8183,337,2
+8,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:02:30"",
+        ""root cause component"": ""productcatalogservice-1""
+    }
+}
+```",task_5,22.26,7667,365,2
+9,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:39:00"",
+        ""root cause reason"": ""node CPU load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:51:30"",
+        ""root cause reason"": ""node CPU load""
+    }
+}
+```",task_4,23.02,8025,364,2
+10,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:37:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:46:30""
+    }
+}
+```",task_1,23.69,7843,363,2
+11,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:00""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:30""
+    }
+}
+```",task_1,28.62,7897,453,2
+12,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,24.65,8141,297,2
+13,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 16:30:00"",
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_5,26.42,8061,304,2
+14,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 17:22:30"",
+        ""root cause component"": ""paymentservice-0""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 17:22:30"",
+        ""root cause component"": ""paymentservice-2""
+    }
+}
+```",task_5,23.48,6733,373,2
+15,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 17:31:00""
+    }
+}
+```",task_1,49.56,6680,342,3
+16,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 18:14:30"",
+        ""root cause component"": ""cartservice2-0""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 18:24:00"",
+        ""root cause component"": ""emailservice-0""
+    }
+}
+```",task_5,23.45,7905,408,2
+17,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    },
+    ""2"": {
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_2,22.84,6697,368,2
+18,"```json
+{
+    ""1"": {
+        ""root cause component"": ""frontend-1"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_6,22.32,7919,276,2
+19,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-1"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,22.4,7611,262,2
+20,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice2-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,23.2,7981,335,2
+21,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:00:30"",
+        ""root cause component"": ""currencyservice-2""
+    }
+}
+```",task_5,23.16,7421,331,2
+22,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause reason"": ""container read I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause reason"": ""container write I/O load""
+    }
+}
+```",task_4,24.3,6927,394,2
+23,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause component"": ""cartservice-0""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:50:00"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,11.17,7303,396,2
+24,"```json
+{
+    ""1"": {
+        ""root cause component"": ""node-3""
+    }
+}
+```",task_3,23.13,7391,312,2
+25,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 23:08:30"",
+        ""root cause component"": ""checkoutservice-2"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,20.92,7425,259,2
+26,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 23:30:00"",
+        ""root cause component"": ""productcatalogservice-2"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,30.38,8233,301,2
+27,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 08:47:30"",
+        ""root cause component"": ""frontend-1"",
+        ""root cause reason"": ""container read I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 08:48:30"",
+        ""root cause component"": ""adservice-1"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_7,22.86,7439,375,2
+28,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container read I/O load""
+    },
+    ""2"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,14.45,7457,345,2
+29,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-2"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,24.63,7907,314,2
+30,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-0""
+    },
+    ""2"": {
+        ""root cause component"": ""paymentservice-2""
+    }
+}
+```",task_3,35.0,6711,1373,2
+31,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    },
+    ""2"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,25.69,6849,384,2
+32,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,24.72,8149,320,2
+33,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 00:49:30"",
+        ""root cause component"": ""paymentservice-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,21.57,8001,291,2
+34,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:15:00""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:19:30""
+    }
+}
+```",task_1,21.26,8365,360,2
+35,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:08:00"",
+        ""root cause reason"": ""container CPU load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:19:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,11.0,7899,372,2
+36,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:44:00"",
+        ""root cause component"": ""shippingservice-0""
+    }
+}
+```",task_5,22.79,7821,299,2
+37,"```json
+{
+    ""1"": {
+        ""root cause component"": ""checkoutservice-2""
+    },
+    ""2"": {
+        ""root cause component"": ""frontend-1""
+    }
+}
+```",task_3,24.61,8117,589,2
+38,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 03:50:30"",
+        ""root cause component"": ""frontend-1"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_7,21.55,7459,261,2
+39,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 04:30:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,20.38,7503,285,2
+40,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 05:15:30"",
+        ""root cause component"": ""node-4""
+    }
+}
+```",task_5,16.09,4048,125,1
+41,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 05:35:30""
+    }
+}
+```",task_1,22.42,7919,272,2
+42,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:26:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,21.9,8127,285,2
+43,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:42:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:54:30""
+    }
+}
+```",task_1,22.26,8229,344,2
+44,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:42:30"",
+        ""root cause component"": ""checkoutservice2-0"",
+        ""root cause reason"": ""container CPU load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:54:30"",
+        ""root cause component"": ""productcatalogservice-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,12.93,8129,392,2
+45,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice2-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,20.95,8097,275,2
+46,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 08:37:00"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,21.41,7715,268,2
+47,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 09:00:00"",
+        ""root cause component"": ""cartservice-1"",
+        ""root cause reason"": ""container read I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 09:05:30"",
+        ""root cause component"": ""productcatalogservice2-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,21.15,7781,393,2
+48,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice-1""
+    },
+    ""2"": {
+        ""root cause component"": ""checkoutservice-1""
+    }
+}
+```",task_3,11.91,7463,437,2
+49,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 09:44:30"",
+        ""root cause component"": ""frontend2-0""
+    }
+}
+```",task_5,20.82,6909,320,2
+50,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""node CPU load""
+    }
+}
+```",task_2,21.73,7757,291,2
+51,"```json
+{
+    ""1"": {
+        ""root cause component"": ""node-4"",
+        ""root cause reason"": ""node memory consumption""
+    },
+    ""2"": {
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_6,21.19,8091,349,2
+52,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 10:37:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 10:43:30""
+    }
+}
+```",task_1,41.89,7915,439,3
+53,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 11:39:00""
+    }
+}
+```",task_1,21.81,8221,269,2
+54,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice-1"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_6,23.28,7851,264,2
+55,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container read I/O load""
+    },
+    ""2"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,27.98,7061,416,2
+56,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 14:07:30"",
+        ""root cause component"": ""emailservice-0"",
+        ""root cause reason"": ""container read I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 14:16:30"",
+        ""root cause component"": ""emailservice-0"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_7,25.16,6377,385,2
+57,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-0""
+    }
+}
+```",task_3,22.84,8187,274,2
+58,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 15:00:00""
+    }
+}
+```",task_1,23.66,7911,294,2
+59,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 15:47:30"",
+        ""root cause component"": ""frontend2-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,24.98,8247,304,2
+60,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,22.64,6719,245,2
+61,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 16:42:30"",
+        ""root cause component"": ""checkoutservice-2"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_7,21.8,8155,290,2
+62,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 20:26:00""
+    }
+}
+```",task_1,22.5,8323,340,2
+63,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 21:54:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,21.49,7899,289,2
+64,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_3,21.09,8111,314,2
+65,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 23:15:30"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_4,16.94,3907,136,1
+66,"```json
+{
+    ""1"": {
+        ""root cause component"": ""node-4"",
+        ""root cause reason"": ""node CPU load""
+    }
+}
+```",task_6,20.03,7747,285,2
+67,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 03:00:00"",
+        ""root cause component"": ""adservice2-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,21.29,7899,281,2
+68,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_3,37.39,8243,263,2
+69,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container read I/O load""
+    },
+    ""2"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,21.57,6663,394,2

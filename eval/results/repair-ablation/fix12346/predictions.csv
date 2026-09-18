@@ -1,0 +1,172 @@
+row_id,prediction,task_index,wall_s,prompt_tokens,completion_tokens,calls
+3,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_6,25.94,16409,323,2
+4,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice-1""
+    }
+}
+```",task_3,42.49,16471,331,2
+5,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_2,47.28,16786,257,3
+10,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:34:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:39:00""
+    }
+}
+```",task_1,36.9,16362,387,2
+11,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:17:00""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:30""
+    }
+}
+```",task_1,33.45,25192,618,3
+12,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""node disk read I/O consumption""
+    }
+}
+```",task_2,26.55,16658,351,2
+13,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 16:32:30"",
+        ""root cause component"": ""frontend""
+    }
+}
+```",task_5,26.8,16546,359,2
+19,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-1"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,26.35,16353,311,2
+22,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause reason"": ""container write I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:50:30"",
+        ""root cause reason"": ""node disk read I/O consumption""
+    }
+}
+```",task_4,26.92,16651,395,2
+26,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 23:38:30"",
+        ""root cause component"": ""productcatalogservice-2"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_7,39.99,16540,307,2
+32,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container write I/O load""
+    }
+}
+```",task_2,41.2,16748,375,2
+33,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 00:42:30"",
+        ""root cause component"": ""paymentservice-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,22.09,16571,244,2
+34,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:14:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:19:30""
+    }
+}
+```",task_1,25.64,16389,392,2
+38,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 03:38:30"",
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_7,25.19,16441,338,2
+40,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 05:15:30"",
+        ""root cause component"": ""node-4""
+    }
+}
+```",task_5,19.23,7824,129,1
+42,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:26:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,25.33,16353,292,2
+46,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 08:31:30"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,19.64,8395,229,1
+51,"```json
+{
+    ""1"": {
+        ""root cause component"": ""node-4"",
+        ""root cause reason"": ""node disk read I/O consumption""
+    },
+    ""2"": {
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_6,24.68,16095,463,2
+57,"```json
+{
+    ""1"": {
+        ""root cause component"": ""adservice""
+    }
+}
+```",task_3,22.22,8286,177,1
+68,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_3,26.13,16445,302,2

@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "python",
+    "run.py",
+    "--dataset",
+    "/data",
+    "--queries",
+    "/out/queries.csv",
+    "--out",
+    "/out"
+  ],
+  "wall_s": 446.6066876170007,
+  "returncode": 0,
+  "timed_out": false,
+  "peak_child_rss_bytes": 518144000,
+  "cpu_max": "200000 100000",
+  "memory_max": "8589934592",
+  "memory_peak": "3664191488"
+}

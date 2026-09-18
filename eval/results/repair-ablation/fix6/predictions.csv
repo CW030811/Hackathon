@@ -1,0 +1,172 @@
+row_id,prediction,task_index,wall_s,prompt_tokens,completion_tokens,calls
+3,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_6,27.9,16520,272,2
+4,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice-1""
+    }
+}
+```",task_3,32.81,16568,263,2
+5,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_2,28.12,16982,326,2
+10,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:34:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:39:00""
+    }
+}
+```",task_1,27.26,16445,379,2
+11,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:30""
+    }
+}
+```",task_1,53.6,16646,556,3
+12,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""node disk read I/O consumption""
+    }
+}
+```",task_2,28.63,16494,366,2
+13,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 16:32:30"",
+        ""root cause component"": ""frontend""
+    }
+}
+```",task_5,26.53,16473,283,2
+19,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-1"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,27.73,16669,314,2
+22,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause reason"": ""container write I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:50:30"",
+        ""root cause reason"": ""node disk read I/O consumption""
+    }
+}
+```",task_4,28.4,16725,411,2
+26,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 23:30:00"",
+        ""root cause component"": ""productcatalogservice-2"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,35.19,16373,314,2
+32,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container write I/O load""
+    }
+}
+```",task_2,23.88,8413,197,1
+33,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 00:42:30"",
+        ""root cause component"": ""paymentservice-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,26.18,16700,275,2
+34,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:14:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:19:30""
+    }
+}
+```",task_1,26.5,16482,402,2
+38,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 03:38:30"",
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_7,27.82,16924,350,2
+40,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 05:21:00"",
+        ""root cause component"": ""checkoutservice""
+    }
+}
+```",task_5,31.36,16096,350,2
+42,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:26:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,27.03,16665,308,2
+46,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 08:36:30"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,33.74,16753,307,2
+51,"```json
+{
+    ""1"": {
+        ""root cause component"": ""node-4"",
+        ""root cause reason"": ""node disk read I/O consumption""
+    },
+    ""2"": {
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_6,28.58,16448,451,2
+57,"```json
+{
+    ""1"": {
+        ""root cause component"": ""adservice""
+    }
+}
+```",task_3,28.85,16526,362,2
+68,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_3,34.01,16250,272,2

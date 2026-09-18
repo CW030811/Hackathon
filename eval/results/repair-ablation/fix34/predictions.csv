@@ -1,0 +1,172 @@
+row_id,prediction,task_index,wall_s,prompt_tokens,completion_tokens,calls
+3,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_6,25.51,16567,259,2
+4,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice-1""
+    }
+}
+```",task_3,30.81,24757,451,3
+5,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_2,26.94,16793,323,2
+10,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:37:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:46:30""
+    }
+}
+```",task_1,29.3,16393,378,2
+11,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:17:00""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:30""
+    }
+}
+```",task_1,37.05,25192,615,3
+12,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""node disk read I/O consumption""
+    }
+}
+```",task_2,21.91,8369,173,1
+13,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 16:42:30"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,25.73,16755,356,2
+19,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-1"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,26.08,16183,284,2
+22,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause reason"": ""container write I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:50:30"",
+        ""root cause reason"": ""node disk read I/O consumption""
+    }
+}
+```",task_4,26.08,16681,365,2
+26,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 23:30:00"",
+        ""root cause component"": ""checkoutservice"",
+        ""root cause reason"": ""container network latency""
+    }
+}
+```",task_7,32.16,8265,297,1
+32,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_2,26.92,16885,331,2
+33,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 00:42:30"",
+        ""root cause component"": ""paymentservice-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,22.75,16573,254,2
+34,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:14:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:19:30""
+    }
+}
+```",task_1,53.79,16411,392,3
+38,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 03:38:30"",
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_7,24.93,16625,360,2
+40,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 05:15:30"",
+        ""root cause component"": ""node-4""
+    }
+}
+```",task_5,16.75,7824,130,1
+42,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:26:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,35.6,16823,289,2
+46,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 08:31:30"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,17.47,8395,138,1
+51,"```json
+{
+    ""1"": {
+        ""root cause component"": ""node-4"",
+        ""root cause reason"": ""node disk read I/O consumption""
+    },
+    ""2"": {
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_6,24.75,16609,478,2
+57,"```json
+{
+    ""1"": {
+        ""root cause component"": ""adservice""
+    }
+}
+```",task_3,22.32,8286,206,1
+68,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_3,28.82,16293,285,2

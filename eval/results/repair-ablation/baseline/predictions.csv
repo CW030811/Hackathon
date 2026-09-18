@@ -1,0 +1,172 @@
+row_id,prediction,task_index,wall_s,prompt_tokens,completion_tokens,calls
+3,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice-1"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_6,23.63,6593,273,2
+4,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice-1""
+    }
+}
+```",task_3,22.13,7333,272,2
+5,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_2,22.31,7899,269,2
+10,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:37:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:46:30""
+    }
+}
+```",task_1,23.11,7843,371,2
+11,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:00""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:30""
+    }
+}
+```",task_1,23.74,7897,364,2
+12,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,23.54,8141,306,2
+13,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 16:30:00"",
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_5,23.26,8061,337,2
+19,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-1"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,22.07,7611,256,2
+22,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause reason"": ""container read I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause reason"": ""container write I/O load""
+    }
+}
+```",task_4,24.05,6927,383,2
+26,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 23:30:00"",
+        ""root cause component"": ""productcatalogservice-2"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,30.53,8233,266,2
+32,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_2,24.96,8149,327,2
+33,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 00:49:30"",
+        ""root cause component"": ""paymentservice-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,22.05,8001,293,2
+34,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:15:00""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:19:30""
+    }
+}
+```",task_1,21.01,8365,357,2
+38,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 03:50:30"",
+        ""root cause component"": ""frontend-1"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_7,19.42,7459,265,2
+40,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 05:15:30"",
+        ""root cause component"": ""node-4""
+    }
+}
+```",task_5,15.11,4048,121,1
+42,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:26:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,22.85,8127,297,2
+46,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 08:37:00"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,19.37,7715,289,2
+51,"```json
+{
+    ""1"": {
+        ""root cause component"": ""node-4"",
+        ""root cause reason"": ""node memory consumption""
+    },
+    ""2"": {
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_6,20.46,8091,331,2
+57,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-0""
+    }
+}
+```",task_3,22.42,8187,268,2
+68,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_3,20.01,8243,272,2

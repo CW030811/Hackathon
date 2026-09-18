@@ -1,0 +1,186 @@
+{
+  "schema_version": "experiment.v1",
+  "experiment_id": "fix12",
+  "created_utc": "2026-09-18T00:20:46.437498+00:00",
+  "code_revision": "0aba33114b3bc4f9d315dfde905ef4c88b04bc28",
+  "source_hashes": {
+    "track-1/starter/agents/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "track-1/starter/agents/heuristic.py": "aa4f6476fb67d2a438744fc46a88a48308d78a350e4448851cb079b6eb2b62e9",
+    "track-1/starter/agents/rca/__init__.py": "39deee12760275a716bc3977c37a41e19a3a0f1587d1cc8213cba8a7aad72eb8",
+    "track-1/starter/agents/rca/contracts.py": "303ce605a49f1d2c57e58ab122cc45e03e7d0a35b71c17821068b94f3cd6af50",
+    "track-1/starter/agents/rca/controller.py": "50782ab0494a8edec4b6189d644a8b26b73085bbeb01b2ab1f0fadd42ea44926",
+    "track-1/starter/agents/rca/data_access.py": "dcb21edadafdebb94ca6365952590ef8ceebbb7ce1b22eec84650e8444f2ab9c",
+    "track-1/starter/agents/rca/evidence.py": "d4a1ed401ec190996cd23a6f186444bca45d72c9eb2fb924ccfa071257afb355",
+    "track-1/starter/agents/rca/logs.py": "958637f9ee584cf250ed6497a7e553da3baeaa66bfd042de98455c3844b1fd9f",
+    "track-1/starter/agents/rca/metrics.py": "23640a1aaa28f598c5c72bbd14add4ec5201a723077fc13e95c4f6d80b7a623c",
+    "track-1/starter/agents/rca/network.py": "eafa8fc7cd16ebd7ebac0aa4d78ec83ba34f2a9ee998523dcbffe5b86a9e5136",
+    "track-1/starter/agents/rca/onset.py": "6c89a2c539c703b7742a262804cbb2b6b582181e938b17476ffd88189a7b46f9",
+    "track-1/starter/agents/rca/prompts.py": "ec51c8ed3eeeb0e58d01463a8b2da327eb39e4a444a9b6f969c10bc286f68823",
+    "track-1/starter/agents/rca/ranking.py": "c0f095c45bdde94f234aeb3c0fd5fff36941dfacef5bf345b51b4f683e95a582",
+    "track-1/starter/agents/rca/routing.py": "f04c8070f19c45533ad524c2bc0a00a354e04d0d9d0f62e55609bb639e9356b7",
+    "track-1/starter/agents/rca/runtime.py": "32fae3a60a187f0e80cb9ce11ebe9e042b7d803f32398c336c8a1c6e145d16a7",
+    "track-1/starter/agents/rca/traces.py": "ece38fee10376daad5ffc859e400d64d2ac1a9c2c3816d38fd9f0fca01468fd2",
+    "track-1/starter/agents/rca/validation.py": "1cc33a3969fba8e639e62bde29f8fb06de9dc68789a2fd3424a2e44317141978",
+    "track-1/starter/agents/routed.py": "02193baf3260958940bdc92667e1a3537c5a2150586be992a43136cda163e97d",
+    "track-1/starter/cost.py": "5d368606963189099fb78db7df905147b7df314b6f727de6b9de1f6d8130b4f6",
+    "track-1/starter/llm.py": "dfe55d83f3519e59bfd41f8cdc837c2a405ff9fa11ae40f4b5480c9658b435b1",
+    "track-1/starter/requirements.txt": "405775dd866c699c30b3d08d93dc4fd04df085e3b1fcbf643a6bfdbc12f8209e",
+    "track-1/starter/run.py": "85423af09be70160dee1882388f4ebb78a7b566c4fb4e06c1bc8711efc57c455",
+    "track-1/starter/score.py": "b62dbe060b200a155d66c5beca7da7a981b006f03bb594e3b1e2bde71ca91c0a"
+  },
+  "config_id": "routed",
+  "config": {
+    "schema_version": "rca-v1",
+    "mode": "routed",
+    "pinned_model": null,
+    "reference_minutes": 10,
+    "case_soft_seconds": 55.0,
+    "run_soft_seconds": 1140.0,
+    "case_cost_limit_usd": 2.5,
+    "run_cost_limit_usd": 20.0,
+    "max_followups": 1,
+    "max_model_stages": 2,
+    "max_http_attempts_per_case": 4
+  },
+  "config_hash": "cd2ee4ec2f086fe29a9ca9ec4af10f3e920250fae061cb3bd968b9ce97f9a486",
+  "budget_policy": {
+    "schema_version": "rca-v1",
+    "reference_minutes": 10,
+    "case_soft_seconds": 55.0,
+    "run_soft_seconds": 1140.0,
+    "case_cost_limit_usd": 2.5,
+    "run_cost_limit_usd": 20.0,
+    "max_followups": 1,
+    "max_model_stages": 2,
+    "max_http_attempts_per_case": 4
+  },
+  "planned_row_ids_in_order": [
+    3,
+    4,
+    5,
+    10,
+    11,
+    12,
+    13,
+    19,
+    22,
+    26,
+    32,
+    33,
+    34,
+    38,
+    40,
+    42,
+    46,
+    51,
+    57,
+    68
+  ],
+  "invocation_rows": {
+    "1": 3,
+    "2": 4,
+    "3": 5,
+    "4": 10,
+    "5": 11,
+    "6": 12,
+    "7": 13,
+    "8": 19,
+    "9": 22,
+    "10": 26,
+    "11": 32,
+    "12": 33,
+    "13": 34,
+    "14": 38,
+    "15": 40,
+    "16": 42,
+    "17": 46,
+    "18": 51,
+    "19": 57,
+    "20": 68
+  },
+  "case_keys_by_row_id": {
+    "3": "6ae38c3db4a0c786",
+    "4": "2089df7ecb608f91",
+    "5": "409a3b64d7918648",
+    "10": "930a85e83d17fd6b",
+    "11": "a610971c1e00f4b3",
+    "12": "b41733ee69f4c9fd",
+    "13": "c19020384b58ccad",
+    "19": "7531fa07303a13b4",
+    "22": "1ffb0e141dad1952",
+    "26": "efef2fba88555f8b",
+    "32": "95287c6ad6a33c6c",
+    "33": "06553645b6406109",
+    "34": "b9046d782d81f7c6",
+    "38": "a8609e3d04a8da9d",
+    "40": "8547492999706379",
+    "42": "a0f24112d14bc26f",
+    "46": "5e2089d8653b15ae",
+    "51": "2ef9ce00d69df386",
+    "57": "66afbf514293ee47",
+    "68": "7cbc0bf106871708"
+  },
+  "query_hash": "ebe1d4d2613aeeed0f6d060df92a308cbfc0780e03d668158a9b6a4721e80b4a",
+  "input_query_file_sha256": "ba8bcd6926fd414de67f7139112c9223756f0a144bc7b4fcb87c911a115cf990",
+  "repetition": 1,
+  "dataset_identity": {
+    "bundle_name": "Market-cloudbed-1",
+    "manifest_sha256": "997866a8dc739b7162c7d91d64a1e837a13d778e1b969998a1bbd8dab286db7c",
+    "label_free_query_sha256": "ba8bcd6926fd414de67f7139112c9223756f0a144bc7b4fcb87c911a115cf990",
+    "telemetry_content_hash_status": "not computed; official bundle manifest identity only"
+  },
+  "price_table_revision": "official-track1-models-2026-09-17",
+  "price_table": {
+    "zai-org/GLM-4.7-Flash": [
+      0.065,
+      0.4
+    ],
+    "zai-org/GLM-5.3-Flash": [
+      0.15,
+      0.5
+    ],
+    "zai-org/GLM-4.6": [
+      0.55,
+      2.2
+    ],
+    "zai-org/GLM-4.7": [
+      0.55,
+      2.2
+    ],
+    "zai-org/GLM-5": [
+      0.95,
+      3.15
+    ],
+    "zai-org/GLM-5.1": [
+      1.3,
+      4.3
+    ],
+    "zai-org/GLM-5.2": [
+      1.4,
+      4.4
+    ]
+  },
+  "cache_condition": "fresh container/application state; OS cache uncontrolled",
+  "hardware_limits": "2 CPU / 8 GiB / no swap / read-only root and telemetry",
+  "tuning_status": "public development data; not hidden-test or independent holdout performance",
+  "runner_command": [
+    "python",
+    "run.py",
+    "--dataset",
+    "/data",
+    "--queries",
+    "/out/queries.csv",
+    "--out",
+    "/out"
+  ],
+  "output_dir": "<local-path>/run",
+  "allowed_environment": {
+    "RCA_MODE": "routed",
+    "RCA_MODEL": null
+  },
+  "credential_values": "never recorded",
+  "stage": "fix12",
+  "image_id": "sha256:976bffd8979cc52d5c611f5a91a1f1a9cd8ee36d48fe889d6ddc9f071a3ab4c1",
+  "source_snapshot": "source.tar.gz; source hashes identify uncommitted stage changes",
+  "dataset_mount": "telemetry only; labels unavailable in container"
+}

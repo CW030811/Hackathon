@@ -1,28 +1,38 @@
-# Credentials: retain safe templates only.
+# Data is downloaded or generated locally, never committed -- see ATTRIBUTION.md.
+track-1/data/
+track-2/data/raw/
+track-2/data/prepped/
+track-2/data/synthetic/
+!track-2/data/README.md
+!track-2/data/checksums.txt
+
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+.DS_Store
+claims.json
+out/
+
+# Local credentials, telemetry archives and generated development artifacts.
 .env
 .env.*
 !.env.example
 *.key
+*.pem
 credentials.json
 secrets.json
-
-# Python and machine-local artifacts.
-.venv/
 venv/
-__pycache__/
 *.py[cod]
-.pytest_cache/
 .mypy_cache/
-.ruff_cache/
-.DS_Store
-
-# Downloaded event bundle and large local transformations.
-/data/Market-cloudbed-1/
 /Market-cloudbed-1/
-/track-1-Market-cloudbed-1.zip
-/data/processed/*
-!/data/processed/.gitkeep
-# data/raw/.gitignore independently excludes raw file contents.
-
-# Experiment scratch output. Curate publishable results into eval/.
-/out/
+*.zip
+*.tar.gz
+*.parquet
+*.pkl
+*.pickle
+data/
+processed/
+.pytest_cache/
+.ruff_cache/
+.worktrees/

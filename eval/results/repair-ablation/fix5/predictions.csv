@@ -1,0 +1,172 @@
+row_id,prediction,task_index,wall_s,prompt_tokens,completion_tokens,calls
+3,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_6,29.6,16775,264,2
+4,"```json
+{
+    ""1"": {
+        ""root cause component"": ""shippingservice-1""
+    }
+}
+```",task_3,27.21,16611,283,2
+5,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_2,27.63,17019,300,2
+10,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:37:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 13:39:00""
+    }
+}
+```",task_1,29.1,16789,357,2
+11,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:22:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 14:27:56""
+    }
+}
+```",task_1,53.6,16791,496,3
+12,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""node disk read I/O consumption""
+    }
+}
+```",task_2,29.09,16459,397,2
+13,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 16:42:30"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,28.03,16695,297,2
+19,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-1"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_6,28.23,16797,294,2
+22,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:30:00"",
+        ""root cause reason"": ""container write I/O load""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-20 21:50:30"",
+        ""root cause reason"": ""node disk read I/O consumption""
+    }
+}
+```",task_4,28.19,16663,357,2
+26,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-20 23:38:30"",
+        ""root cause component"": ""productcatalogservice-2"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_7,36.54,16203,336,2
+32,"```json
+{
+    ""1"": {
+        ""root cause reason"": ""container write I/O load""
+    }
+}
+```",task_2,25.04,8413,194,1
+33,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 00:42:30"",
+        ""root cause component"": ""paymentservice-0"",
+        ""root cause reason"": ""container CPU load""
+    }
+}
+```",task_7,29.89,16817,263,2
+34,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:14:30""
+    },
+    ""2"": {
+        ""root cause occurrence datetime"": ""2022-03-21 01:19:30""
+    }
+}
+```",task_1,26.9,16283,386,2
+38,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 03:55:30"",
+        ""root cause component"": ""checkoutservice-2"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_7,27.08,17021,331,2
+40,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 05:21:00"",
+        ""root cause component"": ""checkoutservice""
+    }
+}
+```",task_5,27.95,15931,352,2
+42,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 07:26:30"",
+        ""root cause reason"": ""container read I/O load""
+    }
+}
+```",task_4,27.15,16749,312,2
+46,"```json
+{
+    ""1"": {
+        ""root cause occurrence datetime"": ""2022-03-21 08:36:30"",
+        ""root cause component"": ""node-1""
+    }
+}
+```",task_5,27.47,16791,293,2
+51,"```json
+{
+    ""1"": {
+        ""root cause component"": ""node-4"",
+        ""root cause reason"": ""node disk read I/O consumption""
+    },
+    ""2"": {
+        ""root cause component"": ""node-6"",
+        ""root cause reason"": ""node memory consumption""
+    }
+}
+```",task_6,28.67,16327,461,2
+57,"```json
+{
+    ""1"": {
+        ""root cause component"": ""paymentservice-0""
+    }
+}
+```",task_3,29.9,16509,316,2
+68,"```json
+{
+    ""1"": {
+        ""root cause component"": ""cartservice2-0""
+    }
+}
+```",task_3,26.82,16729,274,2

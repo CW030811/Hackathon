@@ -40,7 +40,7 @@ Keep changes small and focused. Avoid unrelated edits in one commit and save wor
 
 Sync with the latest practical `main`, check the change locally, and use the PR template to explain what changed, why, and how it was verified. Keep review lightweight but meaningful; ask a teammate to review shared interfaces and core logic when practical.
 
-Notify affected teammates before changing shared files. In particular, coordinate `run.py`, prediction formatting, query identifiers, timestamp normalization, model-client behavior, and evidence schema. Separate active work by module without precommitting to a framework or architecture. `docs/ARCHITECTURE.md` remains empty until the team reviews starter/data inspection and manual RCA.
+Notify affected teammates before changing shared files. In particular, coordinate `run.py`, prediction formatting, query identifiers, timestamp normalization, model-client behavior, and evidence schema. The implemented architecture is documented in `docs/ARCHITECTURE.md`; module contracts are in `docs/INTERFACES.md`.
 
 ## 5. Official Track 1 Integration Safeguards
 

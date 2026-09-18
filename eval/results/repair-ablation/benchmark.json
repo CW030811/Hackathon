@@ -1,0 +1,148 @@
+{
+  "seed": "rca-staged-repair-v1",
+  "selection_rule": "stratified task quotas; sha256(seed|row_id); unique instruction windows; no labels or prior scores used",
+  "quotas": {
+    "task_1": 3,
+    "task_2": 3,
+    "task_3": 3,
+    "task_4": 2,
+    "task_5": 3,
+    "task_6": 3,
+    "task_7": 3
+  },
+  "rows": [
+    {
+      "row_id": 3,
+      "task_index": "task_6",
+      "instruction": "The cloud service system, cloudbed-1, experienced a failure within the time range of March 20, 2022, from 10:30 to 11:00. The specific component that caused the root failure and the underlying reason for the failure are currently unknown. Please identify the root cause component and the root cause reason."
+    },
+    {
+      "row_id": 4,
+      "task_index": "task_3",
+      "instruction": "The cloud service system cloudbed-1 experienced one failure within the time range of March 20, 2022, from 11:00 to 11:30. The specific component responsible for this failure is currently unknown. You are tasked with identifying the root cause component."
+    },
+    {
+      "row_id": 5,
+      "task_index": "task_2",
+      "instruction": "The cloud service system, cloudbed-1, experienced a failure within the time range of March 20, 2022, from 11:30 to 12:00. The underlying reason for this failure is currently unknown. Please identify the root cause reason for the failure."
+    },
+    {
+      "row_id": 10,
+      "task_index": "task_1",
+      "instruction": "The cloud service system, cloudbed-1, may have experienced two failures within the time range of March 20, 2022, from 13:30 to 14:00. The exact times of these failures' occurrences are currently unknown. Your task is to determine the root cause occurrence datetime."
+    },
+    {
+      "row_id": 11,
+      "task_index": "task_1",
+      "instruction": "The cloud service system, cloudbed-1, experienced two failures within the time range of March 20, 2022, from 14:00 to 14:30. The exact time of the root cause occurrence is currently unknown, which makes diagnosing the issue challenging. Please pinpoint the root cause occurrence datetime."
+    },
+    {
+      "row_id": 12,
+      "task_index": "task_2",
+      "instruction": "The cloud service system, cloudbed-1, experienced a failure within the time range of March 20, 2022, from 16:00 to 16:30. The root cause of this failure is currently unknown. Your task is to identify the reason behind this issue."
+    },
+    {
+      "row_id": 13,
+      "task_index": "task_5",
+      "instruction": "The cloudbed-1 system encountered a failure within the timeframe of March 20, 2022, from 16:30 to 17:00. At this point, the exact occurrence time of the root cause and the specific component involved in the failure are unknown. Your task is to determine the root cause occurrence datetime and the affected component."
+    },
+    {
+      "row_id": 19,
+      "task_index": "task_6",
+      "instruction": "The cloud service system, cloudbed-1, experienced a single failure within the time range of March 20, 2022, from 19:30 to 20:00. The component responsible for the failure and the underlying reason for this failure are currently unknown. Your task is to identify the root cause component and the reason behind the failure."
+    },
+    {
+      "row_id": 22,
+      "task_index": "task_4",
+      "instruction": "The cloud service system, cloudbed-1, may have experienced two failures within the time range of March 20, 2022, from 21:30 to 22:00. The exact time of occurrence and the underlying reasons for these failures are currently unknown. You are tasked with identifying the root cause occurrence datetime and the root cause reason."
+    },
+    {
+      "row_id": 26,
+      "task_index": "task_7",
+      "instruction": "During the time range of March 20, 2022, from 23:30 to March 21, 2022, 00:00, the cloud service system, cloudbed-1, experienced a failure. The exact component that caused the failure, the precise time of the root cause occurrence, and the underlying reason for this failure are currently unknown. Your task is to identify the root cause occurrence datetime, the root cause component, and the root cause reason."
+    },
+    {
+      "row_id": 32,
+      "task_index": "task_2",
+      "instruction": "Cloudbed-1 experienced a single failure within the specified time range of March 20, 2022, from 15:00 to 15:30. The underlying reason for this failure is currently unknown. You are tasked with identifying the root cause reason."
+    },
+    {
+      "row_id": 33,
+      "task_index": "task_7",
+      "instruction": "The cloud service system, cloudbed-1, experienced a failure within the time range of March 21, 2022, from 00:30 to 01:00. The exact component responsible for the failure, the time of the root cause occurrence, and the underlying reason for this failure are currently unknown. Please identify the root cause component, the root cause occurrence datetime, and the root cause reason."
+    },
+    {
+      "row_id": 34,
+      "task_index": "task_1",
+      "instruction": "The cloud service system, cloudbed-1, experienced two failures within the specified time range of March 21, 2022, from 01:00 to 01:30. The exact time of the root cause occurrence is currently unknown. Please investigate to determine the root cause occurrence datetime."
+    },
+    {
+      "row_id": 38,
+      "task_index": "task_7",
+      "instruction": "The cloud service system, cloudbed-1, experienced a failure within the time range of March 21, 2022, from 03:30 to 04:00. The detailed information about the failure, such as the root cause component, the exact time of occurrence, and the underlying reason, is currently unknown. You are tasked with identifying the root cause component, the root cause occurrence datetime, and the root cause reason."
+    },
+    {
+      "row_id": 40,
+      "task_index": "task_5",
+      "instruction": "On March 21, 2022, between 05:00 and 05:30, the cloudbed-1 system experienced a failure. The exact datetime of the root cause occurrence and the component responsible for this failure are unknown. You are required to identify the root cause occurrence datetime and the root cause component."
+    },
+    {
+      "row_id": 42,
+      "task_index": "task_4",
+      "instruction": "The cloud service system, cloudbed-1, experienced a failure within the time period of March 21, 2022, from 07:00 to 07:30. The exact time when the root cause occurred as well as the underlying reason for this failure are currently unknown. You need to identify and determine the root cause occurrence time and the reason behind the failure."
+    },
+    {
+      "row_id": 46,
+      "task_index": "task_5",
+      "instruction": "The cloud service system, cloudbed-1, experienced one failure within the time range of March 21, 2022, from 08:30 to 09:00. The exact time of the root cause occurrence and the specific component responsible for this failure are currently unknown. You are tasked with identifying the root cause occurrence datetime and the root cause component."
+    },
+    {
+      "row_id": 51,
+      "task_index": "task_6",
+      "instruction": "During the time range of March 21, 2022, from 10:30 to 11:00, the cloudbed-1 system experienced two failures. The components affected and the reasons behind these failures are currently unknown. You are required to identify the root cause component and the root cause reason."
+    },
+    {
+      "row_id": 57,
+      "task_index": "task_3",
+      "instruction": "The cloud service system, cloudbed-1, experienced one failure within the time range of March 21, 2022, from 14:30 to 15:00. The specific component responsible for this failure is currently unknown. Please identify the root cause component."
+    },
+    {
+      "row_id": 68,
+      "task_index": "task_3",
+      "instruction": "The system, cloudbed-1, experienced a failure within the time range of March 21, 2022, from 12:00 to 12:30. There is one known failure, but the specific component responsible for this failure is currently unknown. Identify the root cause component that triggered this failure."
+    }
+  ],
+  "row_ids": [
+    3,
+    4,
+    5,
+    10,
+    11,
+    12,
+    13,
+    19,
+    22,
+    26,
+    32,
+    33,
+    34,
+    38,
+    40,
+    42,
+    46,
+    51,
+    57,
+    68
+  ],
+  "stages": [
+    "baseline",
+    "fix12",
+    "fix34",
+    "fix5",
+    "fix6"
+  ],
+  "hardware": "2 CPU / 8 GiB / no swap / read-only root and telemetry",
+  "repeats_per_stage": 1,
+  "scope": "public development panel, not holdout; source changes intentional; no variance estimate",
+  "created_utc": "2026-09-18T00:09:21.190802+00:00"
+}

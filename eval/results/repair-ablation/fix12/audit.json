@@ -1,0 +1,1037 @@
+{
+  "schema_version": "evaluation.v1",
+  "manifest": {
+    "schema_version": "experiment.v1",
+    "experiment_id": "fix12",
+    "created_utc": "2026-09-18T00:20:46.437498+00:00",
+    "code_revision": "0aba33114b3bc4f9d315dfde905ef4c88b04bc28",
+    "source_hashes": {
+      "track-1/starter/agents/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "track-1/starter/agents/heuristic.py": "aa4f6476fb67d2a438744fc46a88a48308d78a350e4448851cb079b6eb2b62e9",
+      "track-1/starter/agents/rca/__init__.py": "39deee12760275a716bc3977c37a41e19a3a0f1587d1cc8213cba8a7aad72eb8",
+      "track-1/starter/agents/rca/contracts.py": "303ce605a49f1d2c57e58ab122cc45e03e7d0a35b71c17821068b94f3cd6af50",
+      "track-1/starter/agents/rca/controller.py": "50782ab0494a8edec4b6189d644a8b26b73085bbeb01b2ab1f0fadd42ea44926",
+      "track-1/starter/agents/rca/data_access.py": "dcb21edadafdebb94ca6365952590ef8ceebbb7ce1b22eec84650e8444f2ab9c",
+      "track-1/starter/agents/rca/evidence.py": "d4a1ed401ec190996cd23a6f186444bca45d72c9eb2fb924ccfa071257afb355",
+      "track-1/starter/agents/rca/logs.py": "958637f9ee584cf250ed6497a7e553da3baeaa66bfd042de98455c3844b1fd9f",
+      "track-1/starter/agents/rca/metrics.py": "23640a1aaa28f598c5c72bbd14add4ec5201a723077fc13e95c4f6d80b7a623c",
+      "track-1/starter/agents/rca/network.py": "eafa8fc7cd16ebd7ebac0aa4d78ec83ba34f2a9ee998523dcbffe5b86a9e5136",
+      "track-1/starter/agents/rca/onset.py": "6c89a2c539c703b7742a262804cbb2b6b582181e938b17476ffd88189a7b46f9",
+      "track-1/starter/agents/rca/prompts.py": "ec51c8ed3eeeb0e58d01463a8b2da327eb39e4a444a9b6f969c10bc286f68823",
+      "track-1/starter/agents/rca/ranking.py": "c0f095c45bdde94f234aeb3c0fd5fff36941dfacef5bf345b51b4f683e95a582",
+      "track-1/starter/agents/rca/routing.py": "f04c8070f19c45533ad524c2bc0a00a354e04d0d9d0f62e55609bb639e9356b7",
+      "track-1/starter/agents/rca/runtime.py": "32fae3a60a187f0e80cb9ce11ebe9e042b7d803f32398c336c8a1c6e145d16a7",
+      "track-1/starter/agents/rca/traces.py": "ece38fee10376daad5ffc859e400d64d2ac1a9c2c3816d38fd9f0fca01468fd2",
+      "track-1/starter/agents/rca/validation.py": "1cc33a3969fba8e639e62bde29f8fb06de9dc68789a2fd3424a2e44317141978",
+      "track-1/starter/agents/routed.py": "02193baf3260958940bdc92667e1a3537c5a2150586be992a43136cda163e97d",
+      "track-1/starter/cost.py": "5d368606963189099fb78db7df905147b7df314b6f727de6b9de1f6d8130b4f6",
+      "track-1/starter/llm.py": "dfe55d83f3519e59bfd41f8cdc837c2a405ff9fa11ae40f4b5480c9658b435b1",
+      "track-1/starter/requirements.txt": "405775dd866c699c30b3d08d93dc4fd04df085e3b1fcbf643a6bfdbc12f8209e",
+      "track-1/starter/run.py": "85423af09be70160dee1882388f4ebb78a7b566c4fb4e06c1bc8711efc57c455",
+      "track-1/starter/score.py": "b62dbe060b200a155d66c5beca7da7a981b006f03bb594e3b1e2bde71ca91c0a"
+    },
+    "config_id": "routed",
+    "config": {
+      "schema_version": "rca-v1",
+      "mode": "routed",
+      "pinned_model": null,
+      "reference_minutes": 10,
+      "case_soft_seconds": 55.0,
+      "run_soft_seconds": 1140.0,
+      "case_cost_limit_usd": 2.5,
+      "run_cost_limit_usd": 20.0,
+      "max_followups": 1,
+      "max_model_stages": 2,
+      "max_http_attempts_per_case": 4
+    },
+    "config_hash": "cd2ee4ec2f086fe29a9ca9ec4af10f3e920250fae061cb3bd968b9ce97f9a486",
+    "budget_policy": {
+      "schema_version": "rca-v1",
+      "reference_minutes": 10,
+      "case_soft_seconds": 55.0,
+      "run_soft_seconds": 1140.0,
+      "case_cost_limit_usd": 2.5,
+      "run_cost_limit_usd": 20.0,
+      "max_followups": 1,
+      "max_model_stages": 2,
+      "max_http_attempts_per_case": 4
+    },
+    "planned_row_ids_in_order": [
+      3,
+      4,
+      5,
+      10,
+      11,
+      12,
+      13,
+      19,
+      22,
+      26,
+      32,
+      33,
+      34,
+      38,
+      40,
+      42,
+      46,
+      51,
+      57,
+      68
+    ],
+    "invocation_rows": {
+      "1": 3,
+      "2": 4,
+      "3": 5,
+      "4": 10,
+      "5": 11,
+      "6": 12,
+      "7": 13,
+      "8": 19,
+      "9": 22,
+      "10": 26,
+      "11": 32,
+      "12": 33,
+      "13": 34,
+      "14": 38,
+      "15": 40,
+      "16": 42,
+      "17": 46,
+      "18": 51,
+      "19": 57,
+      "20": 68
+    },
+    "case_keys_by_row_id": {
+      "3": "6ae38c3db4a0c786",
+      "4": "2089df7ecb608f91",
+      "5": "409a3b64d7918648",
+      "10": "930a85e83d17fd6b",
+      "11": "a610971c1e00f4b3",
+      "12": "b41733ee69f4c9fd",
+      "13": "c19020384b58ccad",
+      "19": "7531fa07303a13b4",
+      "22": "1ffb0e141dad1952",
+      "26": "efef2fba88555f8b",
+      "32": "95287c6ad6a33c6c",
+      "33": "06553645b6406109",
+      "34": "b9046d782d81f7c6",
+      "38": "a8609e3d04a8da9d",
+      "40": "8547492999706379",
+      "42": "a0f24112d14bc26f",
+      "46": "5e2089d8653b15ae",
+      "51": "2ef9ce00d69df386",
+      "57": "66afbf514293ee47",
+      "68": "7cbc0bf106871708"
+    },
+    "query_hash": "ebe1d4d2613aeeed0f6d060df92a308cbfc0780e03d668158a9b6a4721e80b4a",
+    "input_query_file_sha256": "ba8bcd6926fd414de67f7139112c9223756f0a144bc7b4fcb87c911a115cf990",
+    "repetition": 1,
+    "dataset_identity": {
+      "bundle_name": "Market-cloudbed-1",
+      "manifest_sha256": "997866a8dc739b7162c7d91d64a1e837a13d778e1b969998a1bbd8dab286db7c",
+      "label_free_query_sha256": "ba8bcd6926fd414de67f7139112c9223756f0a144bc7b4fcb87c911a115cf990",
+      "telemetry_content_hash_status": "not computed; official bundle manifest identity only"
+    },
+    "price_table_revision": "official-track1-models-2026-09-17",
+    "price_table": {
+      "zai-org/GLM-4.7-Flash": [
+        0.065,
+        0.4
+      ],
+      "zai-org/GLM-5.3-Flash": [
+        0.15,
+        0.5
+      ],
+      "zai-org/GLM-4.6": [
+        0.55,
+        2.2
+      ],
+      "zai-org/GLM-4.7": [
+        0.55,
+        2.2
+      ],
+      "zai-org/GLM-5": [
+        0.95,
+        3.15
+      ],
+      "zai-org/GLM-5.1": [
+        1.3,
+        4.3
+      ],
+      "zai-org/GLM-5.2": [
+        1.4,
+        4.4
+      ]
+    },
+    "cache_condition": "fresh container/application state; OS cache uncontrolled",
+    "hardware_limits": "2 CPU / 8 GiB / no swap / read-only root and telemetry",
+    "tuning_status": "public development data; not hidden-test or independent holdout performance",
+    "runner_command": [
+      "python",
+      "run.py",
+      "--dataset",
+      "/data",
+      "--queries",
+      "/out/queries.csv",
+      "--out",
+      "/out"
+    ],
+    "output_dir": "<local-path>/run",
+    "allowed_environment": {
+      "RCA_MODE": "routed",
+      "RCA_MODEL": null
+    },
+    "credential_values": "never recorded",
+    "stage": "fix12",
+    "image_id": "sha256:976bffd8979cc52d5c611f5a91a1f1a9cd8ee36d48fe889d6ddc9f071a3ab4c1",
+    "source_snapshot": "source.tar.gz; source hashes identify uncommitted stage changes",
+    "dataset_mount": "telemetry only; labels unavailable in container"
+  },
+  "integrity_status": "valid",
+  "integrity_errors": [],
+  "warnings": [],
+  "planned": 20,
+  "returned_unique_planned": 20,
+  "missing_row_ids": [],
+  "duplicate_row_ids": [],
+  "unexpected_row_ids": [],
+  "mean_partial": 0.3085,
+  "fully_solved": 3,
+  "strict_fraction": 0.15,
+  "completion_fraction": 1.0,
+  "empty_prediction_fraction": 0.0,
+  "evidence_four_section_fraction": 1.0,
+  "external_wall_s": 444.02166908304207,
+  "sum_case_wall_s": 443.09,
+  "time_stats": {
+    "count": 20,
+    "mean": 22.1545,
+    "median": 22.23,
+    "p95": 25.71,
+    "max": 27.38
+  },
+  "cost_stats": {
+    "count": 20,
+    "mean": 0.005261195,
+    "median": 0.006374025,
+    "p95": 0.00685825,
+    "max": 0.006974899999999999
+  },
+  "known_cost_usd": 0.10522390000000001,
+  "total_cost_usd": 0.10522390000000001,
+  "pricing_complete": true,
+  "per_model_usage": {
+    "zai-org/GLM-5.3-Flash": {
+      "calls": 20,
+      "prompt_tokens": 78772,
+      "completion_tokens": 2918,
+      "unknown_usage_calls": 0
+    },
+    "zai-org/GLM-5.1": {
+      "calls": 16,
+      "prompt_tokens": 62656,
+      "completion_tokens": 2441,
+      "unknown_usage_calls": 0
+    }
+  },
+  "per_model_cost_usd": {
+    "zai-org/GLM-5.3-Flash": 0.0132748,
+    "zai-org/GLM-5.1": 0.0919491
+  },
+  "request_attempts": 36,
+  "invocation_mapping_source": "attempt manifests",
+  "bypass_events": 4,
+  "fallback_attempts": 0,
+  "escalated_case_fraction": 0.8,
+  "mixed_model_run": false,
+  "by_task": {
+    "task_1": {
+      "planned": 3,
+      "mean_partial": 0.3333333333333333,
+      "fully_solved": 0
+    },
+    "task_2": {
+      "planned": 3,
+      "mean_partial": 0.0,
+      "fully_solved": 0
+    },
+    "task_3": {
+      "planned": 3,
+      "mean_partial": 0.3333333333333333,
+      "fully_solved": 1
+    },
+    "task_4": {
+      "planned": 2,
+      "mean_partial": 0.625,
+      "fully_solved": 1
+    },
+    "task_5": {
+      "planned": 3,
+      "mean_partial": 0.5,
+      "fully_solved": 1
+    },
+    "task_6": {
+      "planned": 3,
+      "mean_partial": 0.25,
+      "fully_solved": 0
+    },
+    "task_7": {
+      "planned": 3,
+      "mean_partial": 0.22333333333333336,
+      "fully_solved": 0
+    }
+  },
+  "by_difficulty": {
+    "easy": {
+      "planned": 9,
+      "mean_partial": 0.2222222222222222,
+      "fully_solved": 1
+    },
+    "hard": {
+      "planned": 3,
+      "mean_partial": 0.22333333333333336,
+      "fully_solved": 0
+    },
+    "middle": {
+      "planned": 8,
+      "mean_partial": 0.4375,
+      "fully_solved": 2
+    }
+  },
+  "cases": [
+    {
+      "row_id": 3,
+      "task": "task_6",
+      "difficulty": "middle",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 20.71,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3957,
+          "completion_tokens": 136,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3950,
+          "completion_tokens": 132,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.006364150000000001,
+      "cost_usd": 0.006364150000000001,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "component_review_needed",
+        "reason_review_needed"
+      ]
+    },
+    {
+      "row_id": 4,
+      "task": "task_3",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 1.0,
+      "fully_solved": true,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 23.52,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3668,
+          "completion_tokens": 136,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3661,
+          "completion_tokens": 139,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0059752,
+      "cost_usd": 0.0059752,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": []
+    },
+    {
+      "row_id": 5,
+      "task": "task_2",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 22.2,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3968,
+          "completion_tokens": 135,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3961,
+          "completion_tokens": 133,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0063839,
+      "cost_usd": 0.0063839,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "reason_review_needed"
+      ]
+    },
+    {
+      "row_id": 10,
+      "task": "task_1",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 25.54,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3925,
+          "completion_tokens": 194,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3918,
+          "completion_tokens": 186,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.00657895,
+      "cost_usd": 0.00657895,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 11,
+      "task": "task_1",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 0.5,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 22.98,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 4151,
+          "completion_tokens": 166,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 4144,
+          "completion_tokens": 178,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.00685825,
+      "cost_usd": 0.00685825,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 12,
+      "task": "task_2",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 24.34,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3708,
+          "completion_tokens": 140,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3701,
+          "completion_tokens": 144,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0060567,
+      "cost_usd": 0.0060567,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "reason_review_needed"
+      ]
+    },
+    {
+      "row_id": 13,
+      "task": "task_5",
+      "difficulty": "middle",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 25.71,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 4023,
+          "completion_tokens": 142,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 4016,
+          "completion_tokens": 140,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.00649725,
+      "cost_usd": 0.00649725,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "component_review_needed",
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 19,
+      "task": "task_6",
+      "difficulty": "middle",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 22.91,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3492,
+          "completion_tokens": 116,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3485,
+          "completion_tokens": 144,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0057315000000000005,
+      "cost_usd": 0.0057315000000000005,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "component_review_needed",
+        "reason_review_needed"
+      ]
+    },
+    {
+      "row_id": 22,
+      "task": "task_4",
+      "difficulty": "middle",
+      "status": "returned",
+      "partial": 0.25,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 21.38,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3903,
+          "completion_tokens": 174,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3896,
+          "completion_tokens": 188,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.006545649999999999,
+      "cost_usd": 0.006545649999999999,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "reason_review_needed",
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 26,
+      "task": "task_7",
+      "difficulty": "hard",
+      "status": "returned",
+      "partial": 0.67,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 27.38,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 4107,
+          "completion_tokens": 174,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.00070305,
+      "cost_usd": 0.00070305,
+      "request_attempts": 1,
+      "fallback_attempts": 0,
+      "strong_attempts": 0,
+      "bypass_events": 1,
+      "stop_reasons": [
+        "no_discriminable_model_question"
+      ],
+      "error_categories": [
+        "component_review_needed",
+        "reason_review_needed",
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 32,
+      "task": "task_2",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 22.58,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3996,
+          "completion_tokens": 138,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3989,
+          "completion_tokens": 138,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0064475,
+      "cost_usd": 0.0064475,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "reason_review_needed"
+      ]
+    },
+    {
+      "row_id": 33,
+      "task": "task_7",
+      "difficulty": "hard",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 21.72,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3874,
+          "completion_tokens": 144,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3867,
+          "completion_tokens": 134,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0062564000000000005,
+      "cost_usd": 0.0062564000000000005,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "component_review_needed",
+        "reason_review_needed",
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 34,
+      "task": "task_1",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 0.5,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 25.1,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 4188,
+          "completion_tokens": 163,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 4181,
+          "completion_tokens": 193,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.006974899999999999,
+      "cost_usd": 0.006974899999999999,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 38,
+      "task": "task_7",
+      "difficulty": "hard",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 20.41,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3732,
+          "completion_tokens": 124,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3725,
+          "completion_tokens": 138,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.006057699999999999,
+      "cost_usd": 0.006057699999999999,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "component_review_needed",
+        "reason_review_needed",
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 40,
+      "task": "task_5",
+      "difficulty": "middle",
+      "status": "returned",
+      "partial": 1.0,
+      "fully_solved": true,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "degraded",
+      "usage_attempts": 1,
+      "wall_s": 16.46,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 4048,
+          "completion_tokens": 118,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0006661999999999999,
+      "cost_usd": 0.0006661999999999999,
+      "request_attempts": 1,
+      "fallback_attempts": 0,
+      "strong_attempts": 0,
+      "bypass_events": 1,
+      "stop_reasons": [
+        "no_discriminable_model_question"
+      ],
+      "error_categories": []
+    },
+    {
+      "row_id": 42,
+      "task": "task_4",
+      "difficulty": "middle",
+      "status": "returned",
+      "partial": 1.0,
+      "fully_solved": true,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 20.14,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3968,
+          "completion_tokens": 116,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 3961,
+          "completion_tokens": 140,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0064045,
+      "cost_usd": 0.0064045,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": []
+    },
+    {
+      "row_id": 46,
+      "task": "task_5",
+      "difficulty": "middle",
+      "status": "returned",
+      "partial": 0.5,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "degraded",
+      "usage_attempts": 1,
+      "wall_s": 15.0,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3892,
+          "completion_tokens": 131,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0006493,
+      "cost_usd": 0.0006493,
+      "request_attempts": 1,
+      "fallback_attempts": 0,
+      "strong_attempts": 0,
+      "bypass_events": 1,
+      "stop_reasons": [
+        "no_discriminable_model_question"
+      ],
+      "error_categories": [
+        "component_review_needed",
+        "parser/time_review_needed"
+      ]
+    },
+    {
+      "row_id": 51,
+      "task": "task_6",
+      "difficulty": "middle",
+      "status": "returned",
+      "partial": 0.75,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "degraded",
+      "usage_attempts": 1,
+      "wall_s": 21.5,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 4096,
+          "completion_tokens": 187,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 4089,
+          "completion_tokens": 175,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.0067761,
+      "cost_usd": 0.0067761,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "component_review_needed",
+        "reason_review_needed"
+      ]
+    },
+    {
+      "row_id": 57,
+      "task": "task_3",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 22.26,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 3957,
+          "completion_tokens": 142,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.00066455,
+      "cost_usd": 0.00066455,
+      "request_attempts": 1,
+      "fallback_attempts": 0,
+      "strong_attempts": 0,
+      "bypass_events": 1,
+      "stop_reasons": [
+        "no_discriminable_model_question"
+      ],
+      "error_categories": [
+        "component_review_needed"
+      ]
+    },
+    {
+      "row_id": 68,
+      "task": "task_3",
+      "difficulty": "easy",
+      "status": "returned",
+      "partial": 0.0,
+      "fully_solved": false,
+      "evidence_present": true,
+      "evidence_four_sections": true,
+      "validation_status": "valid",
+      "usage_attempts": 1,
+      "wall_s": 21.25,
+      "models": {
+        "zai-org/GLM-5.3-Flash": {
+          "calls": 1,
+          "prompt_tokens": 4119,
+          "completion_tokens": 142,
+          "unknown_usage_calls": 0
+        },
+        "zai-org/GLM-5.1": {
+          "calls": 1,
+          "prompt_tokens": 4112,
+          "completion_tokens": 139,
+          "unknown_usage_calls": 0
+        }
+      },
+      "known_cost_usd": 0.006632150000000001,
+      "cost_usd": 0.006632150000000001,
+      "request_attempts": 2,
+      "fallback_attempts": 0,
+      "strong_attempts": 1,
+      "bypass_events": 0,
+      "stop_reasons": [],
+      "error_categories": [
+        "component_review_needed"
+      ]
+    }
+  ],
+  "evidence_audit": {
+    "level1": "section/ID manifest integrity only; use audit_evidence.py for ledger/source checks",
+    "level2": "not executed by audit_run",
+    "level3": "causal support requires human review"
+  }
+}

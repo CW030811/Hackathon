@@ -1,110 +1,68 @@
-# MantisGrid Hackathon — Root Cause Analysis Agent
+# Evidence-backed RCA — MantisGrid AI Hackathon 2026
 
-A Track 1 project to identify failure onset, root-cause components, and reasons from telemetry, with verifiable evidence and measured GLM model routing.
+A Track 1 project that investigates microservice incidents from metrics, traces and logs, routes bounded reasoning across GLM models, and produces source-backed explanations.
 
-> Requirements reviewed on September 17, 2026 against the [official repository](https://github.com/MantisGridAI/hackathon-2026-official/tree/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1). This update aligns project documentation; it does not claim that the starter has been integrated, the dataset inspected locally, or experiments completed.
+This is a participant project repository, not the official event repository. It packages the **12346 repair configuration**: service-scope hypotheses, metric semantics, diverse bounded candidate presentation, trace/log investigation, and comparative Strong-model review. The experimental multiscale/short-reference-window change (repair 5) is excluded.
 
-## What We Are Building
+## Event and provenance
 
-The [official brief](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/README.md) asks for three deliverables:
+The [MantisGrid AI Hackathon](https://github.com/MantisGridAI/hackathon-2026-official) took place in Palo Alto on September 17, 2026, 9:30am–3:00pm PDT. Track 1 asks “Why did this break?”; Track 2 addresses cluster efficiency. This project implements Track 1 only. See [event overview](docs/HACKATHON.md), [participant agreement](PARTICIPANT_AGREEMENT.md), and [source provenance](docs/PROVENANCE.md).
 
-1. **An unattended agent:** query the supplied telemetry and answer the requested failure time, component, and/or reason. Route model calls within the permitted GLM family on Featherless.
-2. **An evaluation harness:** compare at least the routed agent with the same agent using a single model, reporting correctness, dollars, time, and variation across repeated runs.
-3. **An explanation for every case:** show actual supporting telemetry, confidence, and alternatives ruled out. Always provide a best guess in the prediction; put uncertainty in the evidence, never invent supporting observations.
+## Measured results
 
-Track 1 is judged headlessly. A dashboard is not a required technical deliverable and must not displace evidence, evaluation, or packaging work.
+Same frozen 20 development cases, all seven task types, one run per version:
 
-## Official Inputs
+| Repairs | Partial | Fully solved | End-to-end time |
+|---|---:|---:|---:|
+| 1–4 | 37.50% | 4/20 | 556.7 s |
+| 1–6 | 39.20% | 3/20 | 605.2 s |
+| **1,2,3,4,6 (this runtime)** | **40.85%** | **4/20** | **584.9 s** |
 
-As documented in [data.md](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/data.md):
+All 20 answers returned under Docker-enforced 2 CPU / 8 GiB limits. Known token cost was $0.21966327; one request has unknown usage, so this is not total billing. **198 tests passed**, including real telemetry checks. These are public-development measurements, not hidden-test results, production-readiness proof or a statistically established improvement. The final version has not been rerun on all 70 cases. [Full report](REPORT.md) · [recorded results](eval/results/repair-ablation/README.md).
 
-- **Development bundle:** `Market-cloudbed-1`, approximately 1.3 GB zipped and 12 GB unpacked, containing metrics, logs, and traces.
-- **Development cases:** 70 query rows; answers are in `dev/query_dev.csv` under `scoring_points`.
-- **Case context:** a 30-minute window and a stated number of failures. Seven task types ask for different subsets of time, component, and reason.
-- **Official judging:** 20 undisclosed cases from another deployment of the same shop, with different components. The public 70-case score is not the official test score.
-- **Time handling:** metric/log timestamps use seconds; trace timestamps use milliseconds. Interpret task and answer times as UTC+8 and preserve source units when normalizing.
+## Run the agent
 
-Use only the event-provided bundle. Do not download the original OpenRCA dataset, which includes judging answers. See [DATA_POLICY.md](DATA_POLICY.md) for schemas, label isolation, and local storage.
-
-## Required Outputs and Submission Interface
-
-The [submission specification](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/submission.md) requires a root Dockerfile and the following command inside the image:
+Requirements: Docker-compatible engine; the [official development bundle](track-1/GET_DATA.md); a Featherless key for model calls. No raw dataset or key is included.
 
 ```bash
-python run.py --dataset /data --queries /data/query.csv --out /out
+docker build -t mantis-rca .
+# Export FEATHERLESS_API_KEY securely in your shell first.
+mkdir -p out/my-run
+docker run --rm --cpus 2 --memory 8g --memory-swap 8g \
+  -e FEATHERLESS_API_KEY -e FEATHERLESS_BASE_URL \
+  -v /absolute/path/Market-cloudbed-1:/data:ro \
+  -v "$PWD/out/my-run":/out \
+  mantis-rca python run.py --dataset /data --queries /data/query.csv --out /out
 ```
 
-For each original `row_id`, the run must write:
+Set FEATHERLESS_BASE_URL only when an alternate endpoint is supplied. The default agent needs no --agent argument. Use a fresh output directory for each run. For a one-case live demo, append --limit 1. For offline best-guess mode, add -e RCA_MODE=deterministic to docker run.
 
-| Output under `--out` | Purpose |
-| --- | --- |
-| `predictions.csv` | Columns `row_id` and `prediction`; the prediction contains one numbered object per stated failure. |
-| `evidence/<row_id>.md` | Four sections: `Answer`, `Confidence`, `Evidence`, and `Ruled out`. |
-| `usage.jsonl` | Starter-generated per-case timing and per-model usage for our own analysis. Judging uses organizer-side metering. |
+Outputs: predictions.csv, evidence/&lt;row_id&gt;.md, usage.jsonl, and diagnostic provenance under --out. Missing telemetry and model failures remain explicit; valid formatting does not mean a correct diagnosis.
 
-Use the starter's `format_prediction()` rather than free-form serialization. The evaluator expects the requested keys in the relative order **datetime, component, reason**, exact component/reason strings, and exactly the stated failure count. Preserve original row IDs even when running a subset. Details and strict/partial scoring are in [EVALUATION.md](EVALUATION.md).
+## Demo and architecture
 
-The final repository must also contain `REPORT.md` and `eval/` with the writeup, comparison harness, and results. These are implementation deliverables to add during development, not completed artifacts in this documentation update.
+- [Demo guide](DEMO.md): live CLI walkthrough and offline recorded Evidence Room.
+- [Recorded interactive demo](demo/evidence-room/index.html): download/open locally; no key or API call. It replays an **older** measured 20-case run, including case 9, not this final version.
+- [Architecture](docs/ARCHITECTURE.md): data → metrics/traces/logs → candidate ranking → Flash/Strong → validated evidence.
+- [Evaluation harness](eval/README.md): unchanged official scorer, source/config manifests and matched comparisons.
 
-## Runtime Constraints
+## Development and tests
 
-From the official [models](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/models.md) and [submission](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/docs/submission.md) guides:
-
-| Constraint | Requirement |
-| --- | --- |
-| Runtime models | The seven listed `zai-org/*` GLM models on Featherless; choose per call and support fallback. |
-| Environment | `FEATHERLESS_API_KEY`; honor `FEATHERLESS_BASE_URL` when supplied. |
-| Machine | 2 CPUs, 8 GB RAM, no GPU. |
-| Per case | At most 10 minutes and $3. |
-| Full judged run | At most 20 minutes and $25 for 20 cases; unreached cases score zero. |
-| Runtime access | Read supplied dataset/query inputs; write artifacts and caches only under `--out`; no external access except the supplied model endpoint. |
-
-The run budget permits only about one minute per case on average, including shared overhead. A ten-minute per-case ceiling is not an acceptable average. HTTP 200 can contain a model-capacity error: check the body, retry within budget, fall back, and preserve partial progress.
-
-## First Execution Check: Official Starter
-
-Run these in a separate official checkout, **not at the root of this repository**. First follow the official [GET_DATA.md](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/track-1/GET_DATA.md), placing its bundle at `track-1/data/Market-cloudbed-1/`:
+Python 3.12 with uv:
 
 ```bash
-cd hackathon-2026-official/track-1
-python -m pip install -r starter/requirements.txt
-make validate
-make dev N=2
-make score
+uv venv --python 3.12
+uv pip install -r track-1/starter/requirements.txt
+cd track-1/starter
+../../.venv/bin/python -m unittest discover -s tests -p 'test_*.py'
 ```
 
-The default heuristic uses no LLM. `make dev && make score` covers all 70 public cases. The published starter result is **0.073 mean partial score, with 2/70 cases fully solved**; this is an organizer-reported baseline, not our result.
+Set RCA_TEST_DATA to the absolute official bundle path to include the five real-telemetry checks; otherwise they explicitly skip. Tests do not require paid model calls.
 
-When integrating, preserve `run.py`'s CLI and `solve(instruction, dataset_dir, ctx) -> Solution`. Set our agent as the default because judges do not pass `--agent`. Keep experiment outputs in separate directories to avoid mixing predictions or appended usage logs. Do not assume the unmodified starter is a sufficient final submission.
+## AI usage and ownership
 
-## Repository and Documentation
+OpenAI Codex and delegated coding agents generated and revised the RCA modules, tests, evaluation tooling, documentation and demo under human direction. Human contributions included project requirements, hypothesis prioritization, experiment choices and review. Saved development records identify a GPT-6-family assistant but do not establish every exact model variant or assistant cost.
 
-```text
-.
-├── README.md
-├── CONTRIBUTING.md
-├── PROJECT_SCOPE.md
-├── DATA_POLICY.md
-├── EVALUATION.md
-├── .gitignore
-├── .github/PULL_REQUEST_TEMPLATE.md
-├── docs/ARCHITECTURE.md           # intentionally empty
-└── data/
-    ├── raw/.gitignore
-    ├── processed/.gitkeep
-    └── samples/.gitkeep
-```
+Runtime calls use Featherless GLM-5.3-Flash / GLM-4.7-Flash and GLM-5.1 / GLM-5.2; no external agent framework is used. The organizer starter supplies interfaces, baseline utilities and the unchanged official accuracy evaluator. Team implementation came through [catou88's repository](https://github.com/catou88/hackathon-2026-official); it is not claimed as solely authored by this repository owner.
 
-- [Project scope](PROJECT_SCOPE.md): deliverables, required behavior, priorities, and what remains undecided.
-- [Data policy](DATA_POLICY.md): official data facts, integrity, processing, and answer isolation.
-- [Evaluation](EVALUATION.md): official scoring, controlled model comparisons, budgets, and reporting.
-- [Contributing](CONTRIBUTING.md): branches, commits, reviews, and implementation safeguards.
-- [Architecture](docs/ARCHITECTURE.md): intentionally empty until starter/data inspection and manual RCA inform a team-reviewed design.
-
-## Submission
-
-Submit the public default-branch repository and English materials through the [official form](https://forms.gle/UbPSwZhKNfkovM8s5) **before September 17, 2026, 15:00 PDT**. Prepare a presentation of around **four minutes** showing a working case, its evidence, and the model comparison. Do not rely on the earlier two-minute/Devpost-only preparation notes.
-
-Before submission, validate our actual agent, test the Docker entry point without `--agent`, finish `REPORT.md` and `eval/`, complete the AI disclosure below, and merge and push all intended work. The [participant agreement](https://github.com/MantisGridAI/hackathon-2026-official/blob/314cca0bba49e1bb137aa9094d1dac4cdf7e4490/PARTICIPANT_AGREEMENT.md) governs; the scoring-weight discrepancy in the starter is recorded in [EVALUATION.md](EVALUATION.md).
-
-## AI Usage Disclosure
+[Original terms](LICENSE) and [data attribution](ATTRIBUTION.md) are preserved. No new blanket open-source license is asserted. This publication is a project archive; it does not establish acceptance by the event or completion of its submission form.

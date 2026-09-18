@@ -1,0 +1,8 @@
+......................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 198 tests in 33.948s
+
+OK
+{"real_query_index": 0, "candidates": 681, "evidence": 2971, "coverage": ["complete", "complete", "complete"], "top_component": "checkoutservice-1"}
+{"budget_s": 30.0, "elapsed_s": 8.566, "real_trace_evidence": 417, "candidates": 2, "edges": 272, "coverage": ["complete"]}
+real second case: 12.291s; 3831 evidence records; 1 answers; zero model calls
